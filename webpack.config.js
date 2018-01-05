@@ -6,8 +6,8 @@ module.exports = {
     // entry: __dirname + "/app/main.js", //已多次提及的唯一入口文件
     entry: {
         index: './js/index.js',
-        test: './js/main.js',
-        vendor: ['./lib/jquery-2.1.4.js', './lib/jquery-weui.min.js', './lib/city-picker.min.js', './lib/swiper.min.js','./js/style.js']
+        user_center: './js/user_center.js',
+        vendor: ['./lib/jquery-2.1.4.js', './lib/jquery-weui.min.js', './lib/city-picker.min.js', './lib/swiper.min.js', './js/style.js']
     },
     output: {
         path: path.join(__dirname, '/app/pages/src'),
@@ -40,7 +40,11 @@ module.exports = {
                 }, {
                     loader: "css-loader",
                     options: {
-                        modules: true
+                        modules: true,
+                        localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                        getLocalIdent: (context, localIdentName, localName, options) => {
+                            return localName
+                        }
                     }
                 }, {
                     loader: "postcss-loader"
