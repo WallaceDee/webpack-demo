@@ -7,7 +7,8 @@ module.exports = {
     entry: {
         index: './js/index.js',
         user_center: './js/user_center.js',
-        vendor: ['./lib/jquery-2.1.4.js', './lib/jquery-weui.min.js', './lib/city-picker.min.js', './lib/swiper.min.js', './js/style.js']
+        user_info: './js/user_info.js',
+        vendor: './js/vendor.js'
     },
     output: {
         path: path.join(__dirname, '/app/pages/src'),
@@ -18,6 +19,8 @@ module.exports = {
         contentBase: "./app/pages", //本地服务器所加载的页面所在的目录
         historyApiFallback: true, //不跳转
         inline: true //实时刷新
+    },    externals : {
+        'jquery' : 'window.jQuery'
     },
     module: {
         rules: [{
@@ -49,7 +52,7 @@ module.exports = {
                 }, {
                     loader: "postcss-loader"
                 }]
-            }
+            }, { test: /\.(eot|svg|ttf|woff)/, loader: 'url-loader?name=fonts/[name].[md5:hash:hex:7].[ext]' }
         ]
     },
     plugins: [
