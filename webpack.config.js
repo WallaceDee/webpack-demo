@@ -5,9 +5,14 @@ module.exports = {
     context: path.join(__dirname, '/app/'),
     // entry: __dirname + "/app/main.js", //已多次提及的唯一入口文件
     entry: {
-        index: './js/index.js',
         user_center: './js/user_center.js',
         user_info: './js/user_info.js',
+        player_info: './js/player_info.js',
+        player_data: './js/player_data.js',
+        purchased: './js/purchased.js',
+        suggestion: './js/suggestion.js',
+        live_center: './js/live_center.js',
+        live: './js/live.js',
         vendor: './js/vendor.js'
     },
     output: {
@@ -19,8 +24,9 @@ module.exports = {
         contentBase: "./app/pages", //本地服务器所加载的页面所在的目录
         historyApiFallback: true, //不跳转
         inline: true //实时刷新
-    },    externals : {
-        'jquery' : 'window.jQuery'
+    },
+    externals: {
+        'jquery': 'window.jQuery'
     },
     module: {
         rules: [{
@@ -58,7 +64,8 @@ module.exports = {
     plugins: [
         new webpack.ProvidePlugin({
             $: "jquery",
-            jQuery: "jquery"
+            jQuery: "jquery",
+            videojs: 'video.js'
         }),
     ]
 }

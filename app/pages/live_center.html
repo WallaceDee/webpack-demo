@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh" style="height: 100%;">
+
+<head>
+    <title>直播中心</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <script src="src/jquery-2.1.4.js"></script>
+    <script src="src/vendor.bundle.js"></script>
+    <script src="src/live_center.bundle.js"></script>
+</head>
+
+<body style="height: 100%;">
+    <div id="page-live-center">
+        <div class="weui-tab">
+            <div class="weui-navbar">
+                <a class="weui-navbar__item weui-bar__item--on" href="#tab1"><i class="icon-ondemand"></i>直播</a>
+                <a class="weui-navbar__item" href="#tab2"><i class="icon-videocam"></i>视频回放</a>
+                <a class="weui-navbar__item " href="#tab3"><i class="icon-subscriptions"></i>精彩集锦</a>
+                    <a class="weui-navbar__item " href="#tab4"><i class="icon-person-add"></i>赛事报名</a>
+            </div>
+            <div class="weui-tab__bd">
+                <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+                    <div class="weui-pull-to-refresh__layer">
+                        <div class="weui-pull-to-refresh__arrow"></div>
+                        <div class="weui-pull-to-refresh__preloader"></div>
+                        <div class="down">下拉刷新</div>
+                        <div class="up">释放刷新</div>
+                        <div class="refresh">正在刷新</div>
+                    </div>
+                    <div class="content weui-cells">
+                        <a class="weui-cell weui-cell_access" href="live.html">
+                            <div class="weui-cell__bd">
+                                <p>测试</p>
+                                <p>测试</p>
+                                <p>测试</p>
+                                <p>测试</p>
+                                <p>测试</p>
+                            </div>
+                            <div class="weui-cell__ft">
+                            </div>
+                        </a>
+                        <a class="weui-cell weui-cell_access" href="player_info.html">
+                            <div class="weui-cell__bd">
+                                <p>测试</p>
+                                <p>测试</p>
+                                <p>测试</p>
+                                <p>测试</p>
+                                <p>测试</p>
+                            </div>
+                            <div class="weui-cell__ft">
+                            </div>
+                        </a>
+                        <a class="weui-cell weui-cell_access" href="player_info.html">
+                            <div class="weui-cell__bd">
+                                <p>测试</p>
+                                <p>测试</p>
+                                <p>测试</p>
+                                <p>测试</p>
+                                <p>测试</p>
+                            </div>
+                            <div class="weui-cell__ft">
+                            </div>
+                        </a>
+                        <a class="weui-cell weui-cell_access" href="player_info.html">
+                            <div class="weui-cell__bd">
+                                <p>测试</p>
+                                <p>测试</p>
+                                <p>测试</p>
+                                <p>测试</p>
+                                <p>测试</p>
+                            </div>
+                            <div class="weui-cell__ft">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="weui-loadmore">
+                        <i class="weui-loading"></i>
+                        <span class="weui-loadmore__tips">正在加载</span>
+                    </div>
+                </div>
+                <div id="tab2" class="weui-tab__bd-item">
+                    <h1>页面2</h1>
+                </div>
+                <div id="tab3" class="weui-tab__bd-item ">
+                    <h1>页面3</h1>
+                </div>
+                 <div id="tab4" class="weui-tab__bd-item ">
+                    <h1>页面4</h1>
+                </div>
+            </div>
+        </div>
+        <div class="weui-tabbar">
+            <a href="live_center.html" class="weui-tabbar__item weui-bar__item_on">
+                      <i class="icon-play weui-tabbar__icon"></i>
+                    <p class="weui-tabbar__label">赛事中心</p>
+                </a>
+            <a href="user_center.html" class="weui-tabbar__item">
+                <i class="icon-user weui-tabbar__icon"></i>
+                    <p class="weui-tabbar__label">个人中心</p>
+                </a>
+        </div>
+    </div>
+</body>
+
+</html>
