@@ -232,7 +232,7 @@ var emojiHT = new Hashtable();
     $(".emoji-btn").click(function(event) {
         /* Act on the event */
 
-        $(".emoji-wrapper").toggleClass('open');
+        $("#page-live").toggleClass('opened-emoji-wrapper');
     });
 
 
@@ -277,7 +277,7 @@ function analyticEmotion(str) {
 		for(var i = 0; i < sArr.length; i++){
 			var k=sArr[i].replace(/\[|]/g,'')
 			if(emojiHT.containsKey(k)) {
-				var reStr = "<img src=\"src/" + emojiHT.get(k)+"\"/>";
+				var reStr = "<img class=\"emoji\" src=\"src/" + emojiHT.get(k)+"\"/>";
 				str = str.replace(sArr[i], reStr);
 			}
 		}
@@ -296,9 +296,9 @@ function analyticEmotion(str) {
     }).on('focus', function() {
         var $scroller = $(document);
         var h = $(document).height();
-        if ($(".emoji-wrapper").hasClass('open'))
+        if ($("#page-live").hasClass('opened-emoji-wrapper'))
       $scroller.scrollTop(h);
-        $(".emoji-wrapper").removeClass('open');
+        $("#page-live").removeClass('opened-emoji-wrapper');
     });;
 
 

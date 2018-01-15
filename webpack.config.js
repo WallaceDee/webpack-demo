@@ -13,6 +13,8 @@ module.exports = {
         suggestion: './js/suggestion.js',
         live_center: './js/live_center.js',
         live: './js/live.js',
+        vip: './js/vip.js',
+        bind: './js/bind.js',
         vendor: './js/vendor.js'
     },
     output: {
