@@ -1,5 +1,5 @@
-import '../css/cropper.min.css'; //使用require导入css文件
-import cropper from '../lib/cropper.min.js'
+import 'cropper/dist/cropper.min.css'; //使用require导入css文件
+import cropper from 'cropper/dist/cropper.min.js'
 import {gender_list} from '../config/config.json'
 
 $(document).ready(function() {

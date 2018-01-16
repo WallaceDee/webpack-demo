@@ -204,18 +204,18 @@ $(document).ready(function() {
         path: 'emoji/36.gif'
     }];
 
-var emojiHT = new Hashtable();   
+    var emojiHT = new Hashtable();
 
     var temp = "";
     var result = "";
     for (var i = 0; i < emoji_list.length; i++) {
-    	emojiHT.put(emoji_list[i].name, emoji_list[i].path);
+        emojiHT.put(emoji_list[i].name, emoji_list[i].path);
         if (i === 0) {
             temp += '<div class="swiper-slide"><ul>';
         } else if (i % 24 === 0) {
             temp += '</ul></div><div class="swiper-slide"><ul>';
         }
-        temp += '<li data-emoji="['+emoji_list[i].name+']"><span><img src="src/' + emoji_list[i].path + '" alt="" /></span></li>';
+        temp += '<li data-emoji="[' + emoji_list[i].name + ']"><span><img src="src/' + emoji_list[i].path + '" alt="" /></span></li>';
     }
     temp += '</ul></div>';
     $(".swiper-wrapper").append(temp);
@@ -241,49 +241,49 @@ var emojiHT = new Hashtable();
         event.stopPropagation();
         console.log($(this).data("emoji"));
 
-     	   var txtArea = $("textarea")[0];
-            var content = txtArea.value;
-            var start = txtArea.selectionStart; //初始位置
-            txtArea.value = content.substring(0, txtArea.selectionStart) + $(this).data("emoji") + content.substring(txtArea.selectionEnd, content.length);
-            var position = start + $(this).data("emoji").length;
-            txtArea.setSelectionRange(position, position);
+        var txtArea = $("textarea")[0];
+        var content = txtArea.value;
+        var start = txtArea.selectionStart; //初始位置
+        txtArea.value = content.substring(0, txtArea.selectionStart) + $(this).data("emoji") + content.substring(txtArea.selectionEnd, content.length);
+        var position = start + $(this).data("emoji").length;
+        txtArea.setSelectionRange(position, position);
 
-            setHeight( $('textarea')[0]);
+        setHeight($('textarea')[0]);
 
     });
 
- function Hashtable() {
-    this._hash = new Object();
-    this.put = function(key, value) {
-        if (typeof (key) != "undefined") {
-            if (this.containsKey(key) == false) {
-                this._hash[key] = typeof (value) == "undefined" ? null : value;
-                return true;
+    function Hashtable() {
+        this._hash = new Object();
+        this.put = function(key, value) {
+            if (typeof(key) != "undefined") {
+                if (this.containsKey(key) == false) {
+                    this._hash[key] = typeof(value) == "undefined" ? null : value;
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
                 return false;
             }
-        } else {
-            return false;
         }
+        this.containsKey = function(key) { return typeof(this._hash[key]) != "undefined"; }
+        this.get = function(key) { return this._hash[key]; }
     }
-    this.containsKey = function(key) { return typeof (this._hash[key]) != "undefined"; }
-    this.get = function(key) { return this._hash[key]; }
-}
 
-//替换表情
-function analyticEmotion(str) {
-	if(typeof (str) != "undefined") {
-		var sArr = str.match(/\[.*?\]/g);
-		for(var i = 0; i < sArr.length; i++){
-			var k=sArr[i].replace(/\[|]/g,'')
-			if(emojiHT.containsKey(k)) {
-				var reStr = "<img class=\"emoji\" src=\"src/" + emojiHT.get(k)+"\"/>";
-				str = str.replace(sArr[i], reStr);
-			}
-		}
-	}
-	return str;
-}
+    //替换表情
+    function analyticEmotion(str) {
+        if (typeof(str) != "undefined") {
+            var sArr = str.match(/\[.*?\]/g);
+            for (var i = 0; i < sArr.length; i++) {
+                var k = sArr[i].replace(/\[|]/g, '')
+                if (emojiHT.containsKey(k)) {
+                    var reStr = "<img class=\"emoji\" src=\"src/" + emojiHT.get(k) + "\"/>";
+                    str = str.replace(sArr[i], reStr);
+                }
+            }
+        }
+        return str;
+    }
 
     function setHeight(element) {
         if (element.scrollHeight < $(element).data("origin-height") + 1) return;
@@ -297,18 +297,18 @@ function analyticEmotion(str) {
         var $scroller = $(document);
         var h = $(document).height();
         if ($("#page-live").hasClass('opened-emoji-wrapper'))
-      $scroller.scrollTop(h);
+            $scroller.scrollTop(h);
         $("#page-live").removeClass('opened-emoji-wrapper');
     });;
 
 
 
 
-$(".send-btn").click(function(event) {
-	/* Act on the event */
-var temp=analyticEmotion($("textarea").val());
-console.log(temp);
-});
+    $(".send-btn").click(function(event) {
+        /* Act on the event */
+        var temp = analyticEmotion($("textarea").val());
+        console.log(temp);
+    });
 
 
 
