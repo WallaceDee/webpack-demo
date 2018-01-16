@@ -28,75 +28,75 @@
 }
 
 .icon-vip:before {
-    content: "\e900";
+    content: '\e900';
 }
 
 .icon-accessibility:before {
-    content: "\e84e";
+    content: '\e84e';
 }
 
 .icon-announcement:before {
-    content: "\e85a";
+    content: '\e85a';
 }
 
 .icon-assignment:before {
-    content: "\e85d";
+    content: '\e85d';
 }
 
 .icon-user:before {
-    content: "\e85e";
+    content: '\e85e';
 }
 
 .icon-keyboard:before {
-    content: "\e312";
+    content: '\e312';
 }
 
 .icon-library-books:before {
-    content: "\e02f";
+    content: '\e02f';
 }
 
 .icon-live-tv:before {
-    content: "\e639";
+    content: '\e639';
 }
 
 .icon-mall:before {
-    content: "\e54c";
+    content: '\e54c';
 }
 
 .icon-message:before {
-    content: "\e0c9";
+    content: '\e0c9';
 }
 
 .icon-person_add:before {
-    content: "\e7fe";
+    content: '\e7fe';
 }
 
 .icon-play:before {
-    content: "\e038";
+    content: '\e038';
 }
 
 .icon-emoji:before {
-    content: "\e815";
+    content: '\e815';
 }
 
 .icon-settings:before {
-    content: "\e8b8";
+    content: '\e8b8';
 }
 
 .icon-subscriptions:before {
-    content: "\e064";
+    content: '\e064';
 }
 
 .icon-videocam:before {
-    content: "\e04b";
+    content: '\e04b';
 }
 
 .icon-female:before {
-    content: "\f221";
+    content: '\f221';
 }
 
 .icon-male:before {
-    content: "\f222";
+    content: '\f222';
 }
 
 
@@ -161,19 +161,25 @@
 
 #page-user-center .header .main a.vip {
     font-size: 12px;
-    color: #FF7501;
-    left: 50%;
-    position: absolute;
-    margin-left: 20px;
-    margin-top: -20px;
     font-style: italic;
+
+    position: absolute;
+    left: 50%;
+
+    margin-top: -20px;
+    margin-left: 20px;
+
+    color: #ff7501;
 }
 
 #page-user-center .header .main i {
     font-size: 22px;
-    vertical-align: text-bottom;
-    color: #efefef;
+
     margin-right: 2px;
+
+    vertical-align: text-bottom;
+
+    color: #efefef;
 }
 
 #page-user-center .header .main i {
@@ -186,43 +192,54 @@
 }
 
 #page-user-center .header .main a>i.icon-vip:after {
-    content: "";
-    display: block;
-    width: 16px;
-    height: 16px;
-    z-index: 1;
-    background-color: #fff;
     position: absolute;
-    border-radius: 50%;
+    z-index: 1;
     top: 2px;
     left: 2px;
+
+    display: block;
+
+    width: 16px;
+    height: 16px;
+
+    content: '';
+
+    border-radius: 50%;
+    background-color: #fff;
 }
 
 #page-user-center .name {
+    position: relative;
+
     margin-top: 5px;
 
     text-align: center;
 
     color: #fff;
-    position: relative;
 }
 
 #page-user-center .header span.gender {
+    font-style: initial;
+
     position: absolute;
     top: 4px;
+
     margin-left: 5px;
-    font-style: initial;
 }
 
 i.icon-male,
 i.icon-female,
 i.icon-unknow {
-    display: block;
     font-size: 12px;
+    line-height: 15px;
+
+    display: block;
+
     width: 15px;
     height: 15px;
-    line-height: 15px;
+
     text-align: center;
+
     color: #fff;
     border: 1px #fff solid;
     border-radius: 50%;
@@ -351,6 +368,7 @@ i.icon-unknow {
 
 
 
+
 /*#page-live {
 position: relative;
 overflow: hidden;
@@ -449,6 +467,7 @@ height: 100%;
 
 
 
+
 /*打开*/
 
 #page-live.opened-emoji-wrapper .emoji-wrapper {
@@ -465,7 +484,7 @@ height: 100%;
     bottom: 11em;
 }
 
-#page-live.opened-emoji-wrapper .emoji-wrapper .weui-tabbar .icon-emoji:before {
+#page-live.opened-emoji-wrapper .weui-tabbar .icon-emoji:before {
     content: '\e312';
 }
 
@@ -548,8 +567,6 @@ height: 100%;
     outline: none;
     background-color: #317ef3;
 }
-
-
 
 
 
