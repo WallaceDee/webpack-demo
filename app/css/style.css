@@ -147,6 +147,7 @@
     border: 3px solid #fff;
     border-radius: 50%;
     background-color: #eee;
+    position: relative;
 }
 
 #page-user-center .header .main span.avater {
@@ -172,7 +173,7 @@
     color: #ff7501;
 }
 
-#page-user-center .header .main i {
+#page-user-center .header  i.icon-vip {
     font-size: 22px;
 
     margin-right: 2px;
@@ -182,16 +183,18 @@
     color: #efefef;
 }
 
-#page-user-center .header .main i {
+#page-user-center .header  i {
     position: relative;
 }
-
-#page-user-center .header .main a>i.icon-vip:before {
+#page-user-center .header  a.vip{
+        position: absolute;
+}
+#page-user-center .header  a.vip>i.icon-vip:before {
     position: relative;
     z-index: 2;
 }
 
-#page-user-center .header .main a>i.icon-vip:after {
+#page-user-center .header  a.vip>i.icon-vip:after {
     position: absolute;
     z-index: 1;
     top: 2px;
@@ -222,8 +225,9 @@
     font-style: initial;
 
     position: absolute;
-    top: 4px;
-
+    bottom: 5px;
+    right: 5px;
+    font-size: 12px;
     margin-left: 5px;
 }
 
