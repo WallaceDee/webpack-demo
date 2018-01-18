@@ -1,11 +1,8 @@
-import 'weui/dist/style/weui.css'; //使用require导入css文件
-import 'jquery-weui/dist/css/jquery-weui.css'; //使用require导入css文件
-import '../css/style.css'; //使用require导入css文件
+import 'weui/dist/style/weui.css' //使用require导入css文件
+import 'jquery-weui/dist/css/jquery-weui.css' //使用require导入css文件
+import '../css/style.css' //使用require导入css文件
 import 'jquery-weui/dist/js/jquery-weui.min.js'
-import FastClick from 'fastclick';
-$(document).ready(function() {
-FastClick.attach(document.body);	
-});
+
 Date.prototype.format = function(fmt) {
     var o = {
         "M+": this.getMonth() + 1,
