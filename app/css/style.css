@@ -28,77 +28,80 @@
 }
 
 .icon-vip:before {
-    content: '\e900';
+    content: "\e901";
+}
+
+.icon-vip2:before {
+    content: "\e900";
 }
 
 .icon-accessibility:before {
-    content: '\e84e';
+    content: "\e84e";
 }
 
 .icon-announcement:before {
-    content: '\e85a';
+    content: "\e85a";
 }
 
 .icon-assignment:before {
-    content: '\e85d';
+    content: "\e85d";
 }
 
 .icon-user:before {
-    content: '\e85e';
+    content: "\e85e";
 }
 
 .icon-keyboard:before {
-    content: '\e312';
+    content: "\e312";
 }
 
 .icon-library-books:before {
-    content: '\e02f';
+    content: "\e02f";
 }
 
 .icon-live-tv:before {
-    content: '\e639';
+    content: "\e639";
 }
 
 .icon-mall:before {
-    content: '\e54c';
+    content: "\e54c";
 }
 
 .icon-message:before {
-    content: '\e0c9';
+    content: "\e0c9";
 }
 
-.icon-person_add:before {
-    content: '\e7fe';
+.icon-person-add:before {
+    content: "\e7fe";
 }
 
 .icon-play:before {
-    content: '\e038';
+    content: "\e038";
 }
 
 .icon-emoji:before {
-    content: '\e815';
+    content: "\e815";
 }
 
 .icon-settings:before {
-    content: '\e8b8';
+    content: "\e8b8";
 }
 
 .icon-subscriptions:before {
-    content: '\e064';
+    content: "\e064";
 }
 
 .icon-videocam:before {
-    content: '\e04b';
+    content: "\e04b";
 }
 
 .icon-female:before {
-    content: '\f221';
+    content: "\f221";
 }
 
 .icon-male:before {
-    content: '\f222';
+    content: "\f222";
 }
-
 
 
 .weui-cell__bd p {
@@ -160,35 +163,40 @@
     background-size: cover;
 }
 
-#page-user-center .header .main a.vip {
+#page-user-center .header a.vip {
     font-size: 12px;
     font-style: italic;
 
     position: absolute;
-    left: 50%;
-
-    margin-top: -20px;
-    margin-left: 20px;
-
+    top: -5px;
     color: #ff7501;
 }
 
-#page-user-center .header i.icon-vip {
-    font-size: 22px;
+#page-user-center .header a.vip:after {
+    content: "开通会员";
+    vertical-align: 4px;
+}
 
-    margin-right: 2px;
+#page-user-center .header a.vip.on i {
+    color: #ff7501
+}
+
+#page-user-center .header a.vip.on:after {
+    content: ""
+}
+
+#page-user-center .header i.icon-vip {
+    font-size: 24px;
+
+    margin-right: 0px;
 
     vertical-align: text-bottom;
 
-    color: #efefef;
+    color: #ccc;
 }
 
 #page-user-center .header i {
     position: relative;
-}
-
-#page-user-center .header a.vip {
-    position: absolute;
 }
 
 #page-user-center .header a.vip>i.icon-vip:before {
@@ -196,22 +204,6 @@
     z-index: 2;
 }
 
-#page-user-center .header a.vip>i.icon-vip:after {
-    position: absolute;
-    z-index: 1;
-    top: 2px;
-    left: 2px;
-
-    display: block;
-
-    width: 16px;
-    height: 16px;
-
-    content: '';
-
-    border-radius: 50%;
-    background-color: #fff;
-}
 
 #page-user-center .name {
     position: relative;
@@ -376,6 +368,8 @@ i.icon-unknow {
 
 
 
+
+
 /*#page-live {
 position: relative;
 overflow: hidden;
@@ -451,7 +445,7 @@ height: 100%;
     transition-timing-function: ease-in-out;
 
     background-color: #f4f4f4;
-justify-content:space-between;
+    justify-content: space-between;
     align-items: flex-end;
 
     overflow: hidden;
@@ -472,6 +466,8 @@ justify-content:space-between;
 
     background-color: #eee;
 }
+
+
 
 
 
@@ -553,7 +549,8 @@ justify-content:space-between;
     color: #999;
     border: none;
     outline: none;
-    background-color: transparent;    height: 44px;
+    background-color: transparent;
+    height: 44px;
     line-height: 0px;
 }
 
@@ -568,13 +565,15 @@ justify-content:space-between;
     margin-right: 10px;
 
     text-align: center;
-margin-bottom: 7px;
+    margin-bottom: 7px;
     color: #fff;
     border: none;
     border-radius: 5px;
     outline: none;
     background-color: #317ef3;
 }
+
+
 
 
 
@@ -675,9 +674,9 @@ margin-bottom: 7px;
     position: relative;
     top: 1px;
 
-    width: 48px;
-    height: 48px;
-    margin-top: -48px;
+    width: 35px;
+    height: 35px;
+    margin-top: -35px;
 
     -webkit-transition-duration: 400ms;
     transition-duration: 400ms;
@@ -692,15 +691,15 @@ margin-bottom: 7px;
 }
 
 .message-text {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.2;
 
     position: relative;
 
     box-sizing: border-box;
-    min-width: 48px;
-    min-height: 48px;
-    padding: 6px 8px;
+    min-width: 35px;
+    min-height: 35px;
+    padding: 4px 8px;
 
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
@@ -765,7 +764,7 @@ margin-bottom: 7px;
 .message-sent.message-with-avatar .message-text,
 .message-sent.message-with-avatar .message-name,
 .message-sent.message-with-avatar .message-label {
-    margin-right: 56px;
+    margin-right: 43px;
 }
 
 .message-received {
@@ -808,7 +807,7 @@ margin-bottom: 7px;
 .message-received.message-with-avatar .message-text,
 .message-received.message-with-avatar .message-name,
 .message-received.message-with-avatar .message-label {
-    margin-left: 56px;
+    margin-left: 43px;
 }
 
 .message-appear-from-bottom {
@@ -859,4 +858,28 @@ margin-bottom: 7px;
 
 img.emoji {
     width: 1.8em;
+}
+
+
+#page-vip .avatar {
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-color: #eee;
+    background-size: cover;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+
+#page-vip .deadline {
+    font-size: .8em;
+    margin-top: .2em;
+}
+
+#page-vip .pay-btn {}
+
+#page-vip .weui-grid__icon {
+    text-align: center;
+    font-size: 1.5em;
+    color: #317ef3;
 }
