@@ -104,6 +104,488 @@
 }
 
 
+/* === Cards === */
+.cards-list ul,
+.card .list-block ul {
+  background: none;
+}
+.cards-list > ul:before,
+.card .list-block > ul:before {
+  display: none;
+}
+.cards-list > ul:after,
+.card .list-block > ul:after {
+  display: none;
+}
+.card {
+  background: #fff;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  position: relative;
+  border-radius: 2px;
+  font-size: 14px;
+}
+.card .list-block,
+.card .content-block {
+  margin: 0;
+}
+.row:not(.no-gutter) .col > .card {
+  margin-left: 0;
+  margin-right: 0;
+}
+.card-content {
+  position: relative;
+}
+.card-content-inner {
+  padding: 15px;
+  position: relative;
+}
+.card-content-inner > p:first-child {
+  margin-top: 0;
+}
+.card-content-inner > p:last-child {
+  margin-bottom: 0;
+}
+.card-content-inner > .list-block,
+.card-content-inner > .content-block {
+  margin: -15px;
+}
+.card-header,
+.card-footer {
+  min-height: 44px;
+  position: relative;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.card-header[valign="top"],
+.card-footer[valign="top"] {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+}
+.card-header[valign="bottom"],
+.card-footer[valign="bottom"] {
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+}
+.card-header a.link,
+.card-footer a.link {
+  line-height: 44px;
+  height: 44px;
+  text-decoration: none;
+  position: relative;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+}
+html:not(.watch-active-state) .card-header a.link:active,
+html:not(.watch-active-state) .card-footer a.link:active,
+.card-header a.link.active-state,
+.card-footer a.link.active-state {
+  opacity: 0.3;
+  -webkit-transition-duration: 0ms;
+  transition-duration: 0ms;
+}
+.card-header a.link i + span,
+.card-footer a.link i + span,
+.card-header a.link i + i,
+.card-footer a.link i + i,
+.card-header a.link span + i,
+.card-footer a.link span + i,
+.card-header a.link span + span,
+.card-footer a.link span + span {
+  margin-left: 7px;
+}
+.card-header a.link i.icon,
+.card-footer a.link i.icon {
+  display: block;
+}
+.card-header a.icon-only,
+.card-footer a.icon-only {
+  min-width: 44px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  margin: 0;
+}
+.card-header {
+  border-radius: 2px 2px 0 0;
+  font-size: 17px;
+}
+.card-header:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: auto;
+  top: auto;
+  height: 1px;
+  width: 100%;
+  background-color: #e1e1e1;
+  display: block;
+  z-index: 15;
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
+}
+html.pixel-ratio-2 .card-header:after {
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+html.pixel-ratio-3 .card-header:after {
+  -webkit-transform: scaleY(0.33);
+  transform: scaleY(0.33);
+}
+.card-header.no-border:after {
+  display: none;
+}
+.card-footer {
+  border-radius: 0 0 2px 2px;
+  color: #6d6d72;
+}
+.card-footer:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: auto;
+  right: auto;
+  height: 1px;
+  width: 100%;
+  background-color: #e1e1e1;
+  display: block;
+  z-index: 15;
+  -webkit-transform-origin: 50% 0%;
+  transform-origin: 50% 0%;
+}
+html.pixel-ratio-2 .card-footer:before {
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+html.pixel-ratio-3 .card-footer:before {
+  -webkit-transform: scaleY(0.33);
+  transform: scaleY(0.33);
+}
+.card-footer.no-border:before {
+  display: none;
+}
+
+
+/* === Messages === */
+
+.messages-content {
+    background: #eee;
+    padding-bottom: 50px;
+}
+
+.messages {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+}
+
+.messages-date {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+
+    margin: 10px 15px;
+
+    text-align: center;
+}
+
+.messages-date span {
+    font-weight: 400;
+}
+
+.message {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+    max-width: 80%;
+    margin: 0 8px 8px 8px;
+
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+}
+
+.message:first-child {
+    margin-top: 8px;
+}
+
+.message.message-pic img {
+    display: block;
+
+    max-width: 100%;
+    height: auto;
+}
+
+.message-name,
+.message-label,
+.message-date,
+.messages-date {
+    color: rgba(0, 0, 0, .51);
+}
+
+.message-name {
+    font-size: 12px;
+    line-height: 1;
+
+    margin-top: 7px;
+    margin-bottom: 2px;
+}
+
+.message-hide-name .message-name {
+    display: none;
+}
+
+.message-label {
+    font-size: 12px;
+    line-height: 1;
+
+    margin-top: 4px;
+}
+
+.message-hide-label .message-label {
+    display: none;
+}
+
+.message-avatar {
+    position: relative;
+    top: 1px;
+
+    width: 35px;
+    height: 35px;
+    margin-top: -35px;
+
+    -webkit-transition-duration: 400ms;
+    transition-duration: 400ms;
+
+    opacity: 1;
+    border-radius: 100%;
+    background-size: cover;
+}
+
+.message-hide-avatar .message-avatar {
+    opacity: 0;
+}
+
+.message-text {
+    font-size: 14px;
+    line-height: 1.2;
+
+    position: relative;
+
+    box-sizing: border-box;
+    min-width: 35px;
+    min-height: 35px;
+    padding: 4px 8px;
+
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    word-break: break-word;
+
+    color: #333;
+    border-radius: 2px;
+}
+
+.message-pic .message-text {
+    padding: 8px;
+}
+
+.message-date {
+    font-size: 12px;
+
+    margin-top: 4px;
+}
+
+.message-pic img+.message-date {
+    margin-top: 8px;
+}
+
+.message-sent {
+    -ms-flex-item-align: end;
+    -webkit-align-self: flex-end;
+    align-self: flex-end;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    -webkit-align-items: flex-end;
+    align-items: flex-end;
+}
+
+.message-sent .message-name,
+.message-sent .message-label {
+    margin-right: 8px;
+}
+
+.message-sent .message-text {
+    margin-right: 8px;
+    margin-left: auto;
+
+    border-radius: 2px 2px 0 2px;
+    background-color: #c8e6c9;
+}
+
+.message-sent .message-text:before {
+    position: absolute;
+    bottom: 0;
+    left: 100%;
+
+    width: 0;
+    height: 0;
+
+    content: '';
+
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #c8e6c9;
+    border-left: 0 solid transparent;
+}
+
+.message-sent.message-with-avatar .message-text,
+.message-sent.message-with-avatar .message-name,
+.message-sent.message-with-avatar .message-label {
+    margin-right: 43px;
+}
+
+.message-received {
+    -ms-flex-item-align: start;
+    -webkit-align-self: flex-start;
+    align-self: flex-start;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+}
+
+.message-received .message-text {
+    margin-left: 8px;
+
+    border-radius: 2px 2px 2px 0;
+    background-color: #fff;
+}
+
+.message-received .message-text:before {
+    position: absolute;
+    right: 100%;
+    bottom: 0;
+
+    width: 0;
+    height: 0;
+
+    content: '';
+
+    border-right: 0 solid transparent;
+    border-bottom: 8px solid #fff;
+    border-left: 8px solid transparent;
+}
+
+.message-received .message-name,
+.message-received .message-label {
+    margin-left: 8px;
+}
+
+.message-received.message-with-avatar .message-text,
+.message-received.message-with-avatar .message-name,
+.message-received.message-with-avatar .message-label {
+    margin-left: 43px;
+}
+
+.message-appear-from-bottom {
+    -webkit-animation: messageAppearFromBottom 400ms;
+    animation: messageAppearFromBottom 400ms;
+}
+
+.message-appear-from-top {
+    -webkit-animation: messageAppearFromTop 400ms;
+    animation: messageAppearFromTop 400ms;
+}
+
+@-webkit-keyframes messageAppearFromBottom {
+    from {
+        -webkit-transform: translate3d(0, 100%, 0);
+    }
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes messageAppearFromBottom {
+    from {
+        transform: translate3d(0, 100%, 0);
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@-webkit-keyframes messageAppearFromTop {
+    from {
+        -webkit-transform: translate3d(0, -100%, 0);
+    }
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes messageAppearFromTop {
+    from {
+        transform: translate3d(0, -100%, 0);
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+
 .weui-cell__bd p {
     color: #999;
 }
@@ -573,288 +1055,6 @@ height: 100%;
     background-color: #317ef3;
 }
 
-
-
-
-
-
-/* === Messages === */
-
-.messages-content {
-    background: #eee;
-    padding-bottom: 50px;
-}
-
-.messages {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    flex-direction: column;
-
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    -ms-flex-direction: column;
-    -webkit-flex-direction: column;
-}
-
-.messages-date {
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1;
-
-    margin: 10px 15px;
-
-    text-align: center;
-}
-
-.messages-date span {
-    font-weight: 400;
-}
-
-.message {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    flex-direction: column;
-
-    box-sizing: border-box;
-    max-width: 80%;
-    margin: 0 8px 8px 8px;
-
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    -ms-flex-direction: column;
-    -webkit-flex-direction: column;
-}
-
-.message:first-child {
-    margin-top: 8px;
-}
-
-.message.message-pic img {
-    display: block;
-
-    max-width: 100%;
-    height: auto;
-}
-
-.message-name,
-.message-label,
-.message-date,
-.messages-date {
-    color: rgba(0, 0, 0, .51);
-}
-
-.message-name {
-    font-size: 12px;
-    line-height: 1;
-
-    margin-top: 7px;
-    margin-bottom: 2px;
-}
-
-.message-hide-name .message-name {
-    display: none;
-}
-
-.message-label {
-    font-size: 12px;
-    line-height: 1;
-
-    margin-top: 4px;
-}
-
-.message-hide-label .message-label {
-    display: none;
-}
-
-.message-avatar {
-    position: relative;
-    top: 1px;
-
-    width: 35px;
-    height: 35px;
-    margin-top: -35px;
-
-    -webkit-transition-duration: 400ms;
-    transition-duration: 400ms;
-
-    opacity: 1;
-    border-radius: 100%;
-    background-size: cover;
-}
-
-.message-hide-avatar .message-avatar {
-    opacity: 0;
-}
-
-.message-text {
-    font-size: 14px;
-    line-height: 1.2;
-
-    position: relative;
-
-    box-sizing: border-box;
-    min-width: 35px;
-    min-height: 35px;
-    padding: 4px 8px;
-
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    word-break: break-word;
-
-    color: #333;
-    border-radius: 2px;
-}
-
-.message-pic .message-text {
-    padding: 8px;
-}
-
-.message-date {
-    font-size: 12px;
-
-    margin-top: 4px;
-}
-
-.message-pic img+.message-date {
-    margin-top: 8px;
-}
-
-.message-sent {
-    -ms-flex-item-align: end;
-    -webkit-align-self: flex-end;
-    align-self: flex-end;
-    -webkit-box-align: end;
-    -ms-flex-align: end;
-    -webkit-align-items: flex-end;
-    align-items: flex-end;
-}
-
-.message-sent .message-name,
-.message-sent .message-label {
-    margin-right: 8px;
-}
-
-.message-sent .message-text {
-    margin-right: 8px;
-    margin-left: auto;
-
-    border-radius: 2px 2px 0 2px;
-    background-color: #c8e6c9;
-}
-
-.message-sent .message-text:before {
-    position: absolute;
-    bottom: 0;
-    left: 100%;
-
-    width: 0;
-    height: 0;
-
-    content: '';
-
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid #c8e6c9;
-    border-left: 0 solid transparent;
-}
-
-.message-sent.message-with-avatar .message-text,
-.message-sent.message-with-avatar .message-name,
-.message-sent.message-with-avatar .message-label {
-    margin-right: 43px;
-}
-
-.message-received {
-    -ms-flex-item-align: start;
-    -webkit-align-self: flex-start;
-    align-self: flex-start;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
-    -webkit-align-items: flex-start;
-    align-items: flex-start;
-}
-
-.message-received .message-text {
-    margin-left: 8px;
-
-    border-radius: 2px 2px 2px 0;
-    background-color: #fff;
-}
-
-.message-received .message-text:before {
-    position: absolute;
-    right: 100%;
-    bottom: 0;
-
-    width: 0;
-    height: 0;
-
-    content: '';
-
-    border-right: 0 solid transparent;
-    border-bottom: 8px solid #fff;
-    border-left: 8px solid transparent;
-}
-
-.message-received .message-name,
-.message-received .message-label {
-    margin-left: 8px;
-}
-
-.message-received.message-with-avatar .message-text,
-.message-received.message-with-avatar .message-name,
-.message-received.message-with-avatar .message-label {
-    margin-left: 43px;
-}
-
-.message-appear-from-bottom {
-    -webkit-animation: messageAppearFromBottom 400ms;
-    animation: messageAppearFromBottom 400ms;
-}
-
-.message-appear-from-top {
-    -webkit-animation: messageAppearFromTop 400ms;
-    animation: messageAppearFromTop 400ms;
-}
-
-@-webkit-keyframes messageAppearFromBottom {
-    from {
-        -webkit-transform: translate3d(0, 100%, 0);
-    }
-    to {
-        -webkit-transform: translate3d(0, 0, 0);
-    }
-}
-
-@keyframes messageAppearFromBottom {
-    from {
-        transform: translate3d(0, 100%, 0);
-    }
-    to {
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-@-webkit-keyframes messageAppearFromTop {
-    from {
-        -webkit-transform: translate3d(0, -100%, 0);
-    }
-    to {
-        -webkit-transform: translate3d(0, 0, 0);
-    }
-}
-
-@keyframes messageAppearFromTop {
-    from {
-        transform: translate3d(0, -100%, 0);
-    }
-    to {
-        transform: translate3d(0, 0, 0);
-    }
-}
 
 img.emoji {
     width: 1.8em;

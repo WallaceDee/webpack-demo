@@ -7,7 +7,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var vConsolePlugin = require('vconsole-webpack-plugin');
 
-var pages = getEntry('./app/pages/**/*.html');
+
 
 
 var config = {
@@ -70,6 +70,9 @@ var config = {
             filter: [], // 需要过滤的入口文件
             enable: true // 发布代码前记得改回 false
         }),
+        // new webpack.ProvidePlugin({
+        //     videojs: 'video.js'
+        // }), 
         // , new CopyWebpackPlugin([{
         //     from: "./app/pages",
         //     to: "./",
@@ -100,21 +103,25 @@ function getEntry(globPath) {
     return entries;
 }
 console.log("dev pages----------------------");
-for (var basename in pages) {
-    console.log("filename:" + basename + '.html');
-    console.log("template:" + pages[basename]);
-    // 配置生成的html文件，定义路径等
-    var conf = {
-        filename: '../dist/' + basename + '.html',
-        template: pages[basename], // 模板路径
-        minify: { //传递 html-minifier 选项给 minify 输出
-            removeComments: true
-        },
-        inject: 'head', // js插入位置
-        chunks: [basename, "vendor"] // 每个html引用的js模块，也可以在这里加上vendor等公用模块
-    };
-    // 需要生成几个html文件，就配置几个HtmlWebpackPlugin对象
-    config.plugins.push(new HtmlWebpackPlugin(conf));
-}
 
+function copyHtmlToDist() {
+    var pages = getEntry('./app/pages/**/*.html');
+    for (var basename in pages) {
+        console.log("filename:" + basename + '.html');
+        console.log("template:" + pages[basename]);
+        // 配置生成的html文件，定义路径等
+        var conf = {
+            filename: '../dist/' + basename + '.html',
+            template: pages[basename], // 模板路径
+            minify: { //传递 html-minifier 选项给 minify 输出
+                removeComments: true
+            },
+            inject: 'head', // js插入位置
+            chunks: [basename, "vendor"] // 每个html引用的js模块，也可以在这里加上vendor等公用模块
+        };
+        // 需要生成几个html文件，就配置几个HtmlWebpackPlugin对象
+        config.plugins.push(new HtmlWebpackPlugin(conf));
+    }
+}
+copyHtmlToDist();
 module.exports = config
