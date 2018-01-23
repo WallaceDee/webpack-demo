@@ -1,7 +1,7 @@
  $(document).ready(function() {
 
      function loadmoreReInit(ele) {
-          $(ele).destroyInfinite();
+         $(ele).destroyInfinite();
          if ($(ele).find('.weui-loadmore').length === 0) {
              var loadmore_html = '<div class="weui-loadmore"><i class="weui-loading"></i><span class="weui-loadmore__tips">正在加载</span></div>';
              $(ele).append(loadmore_html);
@@ -58,7 +58,6 @@
              });
              loadmoreReInit(self);
              $(self).pullToRefreshDone();
-
          }, 2000)
      })
 
