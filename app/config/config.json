@@ -1,3 +1,4 @@
 {
-  "gender_list":  [{ "name": "保密", "value": 0, "class": "unknow" }, { "name": "男", "value": 1, "class": "male" }, { "name": "女", "value": 2, "class": "female" }]
+  "gender_list":  [{ "name": "保密", "value": 0, "class": "unknow" }, { "name": "男", "value": 1, "class": "male" }, { "name": "女", "value": 2, "class": "female" }],
+  "domin":"http://www.michellelee.top"
 }

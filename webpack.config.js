@@ -7,7 +7,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var vConsolePlugin = require('vconsole-webpack-plugin');
 
-
+var insertScriptTag = require('./webpack_plugin/insert-script-tag/insertScriptTag.js');
 
 
 var config = {
@@ -22,6 +22,13 @@ var config = {
         contentBase: "./dist", //本地服务器所加载的页面所在的目录
         historyApiFallback: true, //不跳转
         inline: true //实时刷新
+    },
+    resolve: {
+        //自动扩展文件后缀名，意味着我们require模块可以省略不写后缀名  
+        extensions: ['.js', '.jsx', '.json'],
+        alias: {
+            config: path.resolve(__dirname, 'app/config/config.json')
+        }
     },
     module: {
         rules: [{
@@ -62,9 +69,6 @@ var config = {
             }
         ]
     },
-    externals: {
-        'jquery': 'window.jQuery'
-    },
     plugins: [
         new vConsolePlugin({
             filter: [], // 需要过滤的入口文件
@@ -87,7 +91,10 @@ var config = {
             from: "./app/images/emoji",
             to: "./images/emoji",
             force: true
-        }])
+        }]),
+        new insertScriptTag({
+            paths: ["js/jquery-2.1.4.js", "http://res.wx.qq.com/open/js/jweixin-1.2.0.js"]
+        })
     ]
 }
 

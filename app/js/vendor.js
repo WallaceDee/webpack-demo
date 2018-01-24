@@ -2,7 +2,9 @@ import 'weui/dist/style/weui.css' //使用require导入css文件
 import 'jquery-weui/dist/css/jquery-weui.css' //使用require导入css文件
 import '../css/style.css' //使用require导入css文件
 import 'jquery-weui/dist/js/jquery-weui.min.js'
-
+import { domin } from 'config'
+var curr_url = window.location.href.split('#')[0];
+var get_code_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxba58edcce1726b50&redirect_uri=" + curr_url + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 Date.prototype.format = function(fmt) {
     var o = {
         "M+": this.getMonth() + 1,
@@ -52,4 +54,98 @@ Date.prototype.format = function(fmt) {
     });
     //    $.getScript = function(url, callback) {
     //    };
+
+    $.getCache = function(name, isSession) {
+        var result = null;
+        if (isSession === undefined || isSession === false) {
+            result = JSON.parse(localStorage.getItem(name));
+        } else {
+            result = JSON.parse(sessionStorage.getItem(name));
+        }
+        return result;
+    }
+
+    $.setCache = function(name, object, isSession) {
+        if (isSession === undefined || isSession === false) {
+            localStorage.setItem(name, JSON.stringify(object));
+        } else {
+            sessionStorage.setItem(name, JSON.stringify(object));
+        }
+    }
+
+    $.getParameter = function(key) {
+        var url = window.location.search;
+        var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+        var result = url.substr(1).match(reg);
+        return result ? decodeURIComponent(result[2]) : null;
+    }
+    $._ajax = function(option) {
+        var default_opt = {
+            type: "post",
+            url: "",
+            data: null,
+            dataType: "json",
+            async: true,
+            success: function(data) {
+                console.log(data);
+            },
+            showLoader: false
+        };
+        var opt = $.extend(default_opt, option);
+        $.ajax({
+            type: opt.type,
+            url: opt.url,
+            headers: { token: window.token },
+            data: opt.data,
+            dataType: opt.dataType,
+            async: opt.async,
+            beforeSend: function() {
+                if (opt.showLoader) {
+                    $.showLoading();
+                }
+            },
+            success: function(data) {
+                if (data.error_code === 10003) {//统一处理token过期
+                    $.setCache("token", null);
+                    window.location.href = get_code_url;
+                } else {
+                    opt.success(data);
+                    if (opt.showLoader) {
+                        $.hideLoading();
+                    }
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.error(XMLHttpRequest.status + "-" + XMLHttpRequest.readyState + "-" + textStatus + "-" + errorThrown);
+            }
+        });
+    }
 })($);
+
+
+
+if ($.getCache("token") !== null) {
+    window.token = $.getCache("token");
+} else {
+    var code = $.getParameter("code");
+    if (code === null) {
+
+        window.location.href = get_code_url;
+    }
+    console.log(code);
+    $._ajax({
+        url: domin + "/api/v1/token/user",
+        async: false,
+        data: {
+            code: code
+        },
+        success: function(data) {
+            console.log(data);
+            if (data.token !== undefined) {
+                $.setCache("token", data.token);
+            } else {
+                $.toast("<span style='line-height:15px;'>错误,请刷新页面</span>", "cancel");
+            }
+        }
+    });
+}
