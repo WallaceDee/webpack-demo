@@ -2,7 +2,8 @@ import 'weui/dist/style/weui.css' //使用require导入css文件
 import 'jquery-weui/dist/css/jquery-weui.css' //使用require导入css文件
 import '../css/style.css' //使用require导入css文件
 import 'jquery-weui/dist/js/jquery-weui.min.js'
-import { domin } from 'config'
+import { domain } from 'config'
+window.domain = domain;
 var curr_url = window.location.href.split('#')[0];
 var get_code_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxba58edcce1726b50&redirect_uri=" + curr_url + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 Date.prototype.format = function(fmt) {
@@ -123,6 +124,11 @@ Date.prototype.format = function(fmt) {
 })($);
 
 
+
+
+
+
+
 var token = "";
 
 if ($.getCache("token") !== null) {
@@ -134,7 +140,7 @@ if ($.getCache("token") !== null) {
     }
     console.log(code);
     token = $._ajax({
-        url: domin + "/api/v1/token/user",
+        url: domain + "/api/v1/token/user",
         async: false,
         data: {
             code: code

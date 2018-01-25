@@ -1083,3 +1083,11 @@ img.emoji {
     font-size: 1.5em;
     color: #317ef3;
 }
+
+
+/*****#page-user-info*****/
+
+#cutter-popup .img-container {
+    width: 100%;
+    height: 400px;
+}

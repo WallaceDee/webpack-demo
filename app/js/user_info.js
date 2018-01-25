@@ -1,8 +1,17 @@
 import 'cropper/dist/cropper.min.css'; //使用require导入css文件
-import cropper from 'cropper/dist/cropper.min.js'
-import {gender_list} from 'config'
+import 'cropper'
+import { gender_list } from 'config'
+
+const template = require('../template/user_info.art')
 
 $(document).ready(function() {
+    var data = $._ajax({
+        async:false,
+        type: "get",
+        url: domain + "/api/v1/user/info"
+    }).responseJSON;
+
+    $("#page-user-info").html(template(data));
 
     $(document).on("click", "#page-user-info .name-cell", function() {
         var ex_value = $(this).find(".weui-cell__ft").text();
@@ -79,73 +88,75 @@ $(document).ready(function() {
     });
 
 
-        $(document).on('click', '#page-user-info .gender-cell', function(event) {
-            event.preventDefault();
-            /* Act on the event */
-            $(".gender-input").picker("open");
-        });
-        $(".gender-input").picker({
-            title: "请选择性别",
-            toolbarTemplate: '<div class="toolbar">\
+    $(document).on('click', '#page-user-info .gender-cell', function(event) {
+        event.preventDefault();
+        /* Act on the event */
+        $(".gender-input").picker("open");
+    });
+
+
+    $(".gender-input").picker({
+        title: "请选择性别",
+        toolbarTemplate: '<div class="toolbar">\
           <div class="toolbar-inner">\
           <h1 class="title">{{title}}</h1>\
           </div>\
           </div>',
-            cols: [{
-                textAlign: 'center',
-                values: ["保密", "男", "女"],
-            }],
-            onChange: function(picker) {
-              
-                var value = 0;
-                for (var i = 0; i < gender_list.length; i++) {
-                    if (picker.value[0] === gender_list[i].name) {
-                        value = gender_list[i].value;
+        cols: [{
+            textAlign: 'center',
+            values: ["保密", "男", "女"],
+        }],
+        onChange: function(picker) {
+
+            var value = 0;
+            for (var i = 0; i < gender_list.length; i++) {
+                if (picker.value[0] === gender_list[i].name) {
+                    value = gender_list[i].value;
+                }
+            }
+            console.log(value);
+            // $.ajax({
+            //     type: "post",
+            //     url: "/users/modify",
+            //     data: { userGender: value, userName: userInfo.userName, type: "userGender", token: token },
+            //     success: function(data) {
+            //         if (data.code === 200) {
+            //             // userInfo.userGender = value;
+            //             // setCache("userInfo", userInfo);
+            //         }
+            //     }
+            // });
+        }
+    });
+
+    $(document).on('click', '#page-user-info .birthday-cell', function(event) {
+        event.preventDefault();
+        /* Act on the event */
+        $(".birthday-input").calendar("open"); //打开弹窗
+
+    });
+    var today = new Date().getTime();
+    var ex_birthday = $(".birthday-input").val();
+    ex_birthday === "点击设置" ? ex_birthday = [today] : ex_birthday = [ex_birthday];
+    $(".birthday-input").calendar({
+        value: ex_birthday,
+        maxDate: today,
+        dateFormat: 'yyyy-mm-dd',
+        onChange: function(calendar) {
+            console.log(calendar.value);
+            var value = new Date(calendar.value[0]).format("yyyy-MM-dd");
+            $.ajax({
+                type: "post",
+                url: "/users/modify",
+                data: { userBirthday: value, userName: userInfo.userName, type: "userBirthday", token: token },
+                success: function(data) {
+                    if (data.code === 200) {
+                        // userInfo.userGender = value;
+                        // setCache("userInfo", userInfo);
                     }
                 }
-              console.log(value);
-                // $.ajax({
-                //     type: "post",
-                //     url: "/users/modify",
-                //     data: { userGender: value, userName: userInfo.userName, type: "userGender", token: token },
-                //     success: function(data) {
-                //         if (data.code === 200) {
-                //             // userInfo.userGender = value;
-                //             // setCache("userInfo", userInfo);
-                //         }
-                //     }
-                // });
-            }
-        });
-
-        $(document).on('click', '#page-user-info .birthday-cell', function(event) {
-            event.preventDefault();
-            /* Act on the event */
-            $(".birthday-input").calendar("open");  //打开弹窗
-  
-        });
-        var today = new Date().getTime();
-        var ex_birthday = $(".birthday-input").val();
-        ex_birthday === "点击设置" ? ex_birthday = [today] : ex_birthday = [ex_birthday];
-        $(".birthday-input").calendar({
-            value: ex_birthday,
-            maxDate: today,
-            dateFormat: 'yyyy-mm-dd',
-            onChange: function(calendar) {
-                console.log(calendar.value);
-                var value = new Date(calendar.value[0]).format("yyyy-MM-dd");
-                $.ajax({
-                    type: "post",
-                    url: "/users/modify",
-                    data: { userBirthday: value, userName: userInfo.userName, type: "userBirthday", token: token },
-                    success: function(data) {
-                        if (data.code === 200) {
-                            // userInfo.userGender = value;
-                            // setCache("userInfo", userInfo);
-                        }
-                    }
-                });
-            }
-        });
+            });
+        }
+    });
 
 });

@@ -6,7 +6,6 @@ var entries = getEntry('./app/js/**/*.js'); // 获得入口js文件
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var vConsolePlugin = require('vconsole-webpack-plugin');
-
 var insertScriptTag = require('./webpack_plugin/insert-script-tag/insertScriptTag.js');
 
 
@@ -27,11 +26,15 @@ var config = {
         //自动扩展文件后缀名，意味着我们require模块可以省略不写后缀名  
         extensions: ['.js', '.jsx', '.json'],
         alias: {
-            config: path.resolve(__dirname, 'app/config/config.json')
+            'config': path.resolve(__dirname, 'app/config/config.json'),
+            'art-template-filter': path.resolve(__dirname, 'app/lib/art-template-filter.js')
         }
     },
     module: {
         rules: [{
+                test: /.art$/,
+                use: ['art-template-loader']
+            }, {
                 test: /(\.jsx|\.js)$/,
                 use: {
                     loader: "babel-loader",
@@ -69,10 +72,14 @@ var config = {
             }
         ]
     },
+    externals: {
+        'jquery': 'window.jQuery',
+        'runtime':'window.runtime'
+    },
     plugins: [
         new vConsolePlugin({
             filter: [], // 需要过滤的入口文件
-            enable: true // 发布代码前记得改回 false
+            enable: false // 发布代码前记得改回 false
         }),
         // new webpack.ProvidePlugin({
         //     videojs: 'video.js'
