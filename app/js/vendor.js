@@ -92,10 +92,10 @@ Date.prototype.format = function(fmt) {
             showLoader: false
         };
         var opt = $.extend(default_opt, option);
-        $.ajax({
+        return $.ajax({
             type: opt.type,
             url: opt.url,
-            headers: { token: window.token },
+            headers: { token: token },
             data: opt.data,
             dataType: opt.dataType,
             async: opt.async,
@@ -105,17 +105,17 @@ Date.prototype.format = function(fmt) {
                 }
             },
             success: function(data) {
-                if (data.error_code === 10003) {//统一处理token过期
-                    $.setCache("token", null);
-                    window.location.href = get_code_url;
-                } else {
-                    opt.success(data);
-                    if (opt.showLoader) {
-                        $.hideLoading();
-                    }
+                opt.success(data);
+                if (opt.showLoader) {
+                    $.hideLoading();
                 }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
+                if (XMLHttpRequest.status === 401) { //统一处理token过期
+                    console.log(11111111111111111111);
+                    $.setCache("token", null);
+                    window.location.href = get_code_url;
+                }
                 console.error(XMLHttpRequest.status + "-" + XMLHttpRequest.readyState + "-" + textStatus + "-" + errorThrown);
             }
         });
@@ -123,29 +123,28 @@ Date.prototype.format = function(fmt) {
 })($);
 
 
+var token = "";
 
 if ($.getCache("token") !== null) {
-    window.token = $.getCache("token");
+    token = $.getCache("token");
 } else {
     var code = $.getParameter("code");
     if (code === null) {
-
         window.location.href = get_code_url;
     }
     console.log(code);
-    $._ajax({
+    token = $._ajax({
         url: domin + "/api/v1/token/user",
         async: false,
         data: {
             code: code
         },
         success: function(data) {
-            console.log(data);
             if (data.token !== undefined) {
                 $.setCache("token", data.token);
-            } else {
-                $.toast("<span style='line-height:15px;'>错误,请刷新页面</span>", "cancel");
             }
         }
-    });
+    }).responseJSON.token;
+
+    console.log("window.token=" + token);
 }
