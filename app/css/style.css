@@ -1091,3 +1091,30 @@ img.emoji {
     width: 100%;
     height: 400px;
 }
+
+/*****#page-player-info*****/
+
+#page-player-info .weui-media-box_appmsg{
+      align-items: flex-start;
+}
+
+#page-player-info  .weui-media-box__info{
+  margin-top:5px;
+}
+#page-player-info .weui-media-box__title i{
+  display: inline-block;
+}
+
+#page-player-info .weui-media-box__thumb{
+  display: block;
+  height:100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+ #page-player-info .weui-media-box__desc{  -webkit-line-clamp: initial;}
+#page-player-info .weui-media-box_appmsg .weui-media-box__hd{
+  width: 140px;
+  height: 140px;
+}

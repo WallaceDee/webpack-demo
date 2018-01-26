@@ -6,6 +6,11 @@ import { domain } from 'config'
 window.domain = domain;
 var curr_url = window.location.href.split('#')[0];
 var get_code_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxba58edcce1726b50&redirect_uri=" + curr_url + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+window.onpageshow = function(e) {
+    if (e.persisted) {
+        window.location.reload(true)
+    }
+}
 Date.prototype.format = function(fmt) {
     var o = {
         "M+": this.getMonth() + 1,
@@ -35,18 +40,19 @@ Date.prototype.format = function(fmt) {
             this.each(function() {
                 if ($(this).attr("required") !== undefined) { //html的pattern要注意转义
                     if ($(this).val() === "") {
-                        $.toast($(this).attr("emptyTips"), "cancel");
+                        $.toptip($(this).attr("emptyTips"), "error");
                         is_pass = false;
                         return false;
-                    } else {
-                        if ($(this).attr("pattern") !== undefined) { //html的pattern要注意转义
-                            var reg = new RegExp($(this).attr("pattern"));
-                            if (!reg.test($(this).val())) {
-                                $.toast($(this).attr("notMatchTips"), "cancel");
-                                is_pass = false;
-                                return false;
-                            }
-                        }
+                    }
+                }
+                if ($(this).attr("pattern") !== undefined && $(this).val() !== "") { //html的pattern要注意转义  斜杠 转义
+                    var reg = new RegExp($(this).attr("pattern"));
+                    console.log(reg);
+                    console.log(reg.test($(this).val()));
+                    if (!reg.test($(this).val())) {
+                        $.toptip($(this).attr("notMatchTips"), "error");
+                        is_pass = false;
+                        return false;
                     }
                 }
             });
@@ -112,11 +118,21 @@ Date.prototype.format = function(fmt) {
                 }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                if (XMLHttpRequest.status === 401) { //统一处理token过期
-                    console.log(11111111111111111111);
+                //统一处理错误
+                var data = XMLHttpRequest.responseJSON;
+                var error_code = data.error_code;
+                var msg=data.msg;
+                //token过期
+                if (XMLHttpRequest.status === 401 && error_code === 10003) {
                     $.setCache("token", null);
                     window.location.href = get_code_url;
                 }
+                //
+                if (XMLHttpRequest.status === 404 && error_code === 30003) {
+                    $.toptip(msg,"warning");
+                    $("#page-player-data").html('<div class="weui-loadmore weui-loadmore_line"><span class="weui-loadmore__tips">暂无数据</span></div>')
+                }
+
                 console.error(XMLHttpRequest.status + "-" + XMLHttpRequest.readyState + "-" + textStatus + "-" + errorThrown);
             }
         });
