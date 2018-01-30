@@ -1,64 +1,94 @@
- $(document).ready(function() {
+const template = require('../template/live_center.art')
 
-     function loadmoreReInit(ele) {
-         $(ele).destroyInfinite();
-         if ($(ele).find('.weui-loadmore').length === 0) {
-             var loadmore_html = '<div class="weui-loadmore"><i class="weui-loading"></i><span class="weui-loadmore__tips">正在加载</span></div>';
-             $(ele).append(loadmore_html);
-         }
-         $(ele).infinite();
-     }
+$(document).ready(function() {
 
 
-     $(".weui-tab__bd-item").infinite().on("infinite", function() {
-         var self = this;
-         self.itemsPerLoad = 20;
-         self.maxItems = 10;
-         self.lastIndex = $(self).find('.cards-list li.card').length;
 
-         if (self.loading) return;
-         self.loading = true;
-         setTimeout(function() {
-
-             $(self).find(".content ul").append('<li class="card">\
-                                <div class="card-header">卡头</div>\
-                                <div class="card-content">\
-                                    <div class="card-content-inner">卡内容</div>\
-                                </div>\
-                                <div class="card-footer">卡脚</div>\
-                            </li>');
-
-             self.loading = false;
-             self.lastIndex = $(self).find('.cards-list li.card').length;
-             console.log(self.lastIndex + "---------------");
-             console.log(self.maxItems + "---------------");
-             console.log("---------------");
-             console.log(self.lastIndex >= self.maxItems);
-             console.log("---------------");
-             if (self.lastIndex >= self.maxItems) {
-                 // 加载完毕，则注销无限加载事件，以防不必要的加载
-                 $(self).destroyInfinite();
-                 // 删除加载提示符
-                 $(self).find(".weui-loadmore").remove();
-                 return;
-             }
-
-         }, 1000); //模拟延迟
-     });
+            function loadmoreReInit(ele) {
+                $(ele).destroyInfinite();
+                if ($(ele).find('.weui-loadmore').length === 0) {
+                    var loadmore_html = '<div class="weui-loadmore"><i class="weui-loading"></i><span class="weui-loadmore__tips">正在加载</span></div>';
+                    $(ele).append(loadmore_html);
+                }
+                $(ele).infinite();
+            }
 
 
-     $('.weui-tab__bd-item').pullToRefresh().on('pull-to-refresh', function(done) {
-         var self = this;
+            var page = 1;
+            var size = 10;
 
-         setTimeout(function() {
-             $(self).find('.cards-list li.card').each(function(index, el) {
-                 if (index > 5) {
-                     $(el).remove();
-                 }
-             });
-             loadmoreReInit(self);
-             $(self).pullToRefreshDone();
-         }, 2000)
-     })
 
- });
+            function c($ele) {
+
+                var opt = {};
+                opt.itemsPerLoad = size;
+                opt.page = page;
+                opt.maxItems = 0;
+                opt.lastIndex = 0;
+                opt.loading = false;
+                opt.ele = $ele;
+                return opt;
+            }
+
+
+            $(".weui-tab__bd-item").infinite().on("infinite", function() {
+                var self = this;
+                self.opt = c($(self));
+
+                var self = this;
+                if (self.opt.loading) return;
+                self.opt.loading = true;
+                addItem(self.opt);
+
+
+            });
+
+            console.log(c($(".weui-tab__bd-item").eq(0));
+            addItem(c($(".weui-tab__bd-item").eq(0));
+
+
+                function addItem(opt) {
+                    $._ajax({
+                        async: false,
+                        type: "get",
+                        url: domain + "/api/v1/competition/begins",
+                        data: {
+                            page: opt.page,
+                            size: opt.itemsPerLoad
+                        },
+                        success: function(data) {
+                            opt.ele.find('.cards-list>ul').append(template(data));
+                            console.log(data);
+
+                            opt.lastIndex = opt.ele.find('.cards-list>ul>li').length;
+                            opt.maxItems = data.total;
+
+                            if (opt.lastIndex >= opt.maxItems) {
+                                // 加载完毕，则注销无限加载事件，以防不必要的加载
+                                opt.ele.destroyInfinite();
+                                // 删除加载提示符
+                                opt.ele.find(".weui-loadmore").remove();
+                            } else {
+                                opt.page++;
+                                opt.loading = false;
+                            }
+                        }
+                    });
+                }
+
+
+                $('.weui-tab__bd-item').pullToRefresh().on('pull-to-refresh', function(done) {
+                    var self = this;
+
+                    setTimeout(function() {
+                        $(self).find('.cards-list li.card').each(function(index, el) {
+                            if (index > 5) {
+                                $(el).remove();
+                            }
+                        });
+                        loadmoreReInit(self);
+                        $(self).pullToRefreshDone();
+                    }, 2000);
+                })
+
+            });

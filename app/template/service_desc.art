@@ -1,0 +1,9 @@
+<div class="weui-tab__bd">
+    <div class="content"> {{@content}}</div>
+</div>
+<div class="weui-tabbar">
+    <a href="javascript:;" class="weui-btn weui-btn_primary">支付开通</a>
+</div>
+<script>
+document.title = "{{title}}"
+</script>

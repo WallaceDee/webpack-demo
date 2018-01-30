@@ -3,20 +3,34 @@
     <div class="main">
         <div class="avatar-border"><span class="avater" style="background-image: url({{head_img}});"></span> <span class="gender"><i class="icon-{{sex|gender2class}}"></i></span></div>
     </div>
-    <div class="name">{{username}}<a class="vip{{is_member===true?' on':''}}" href="vip.html"><i class="icon-vip"></i></a>
+    <div class="name">{{username}}<a class="vip{{member_status===1?' on':''}}" href="vip.html"><i class="icon-vip"></i></a>
     </div>
 </div>
 <div class="weui-cells">
-    <a class="weui-cell weui-cell_access" href="player_info.html">
+        <a class="weui-cell weui-cell_access" href="vip.html">
         <div class="weui-cell__bd">
-            <p><i class="icon-accessibility"></i>球员信息</p>
+            <p><i class="icon-vip2"></i>会员中心</p>
         </div>
         <div class="weui-cell__ft">
         </div>
     </a>
-    <a class="weui-cell weui-cell_access" href="player_data.html">
+    <a class="weui-cell weui-cell_access" href="user_info.html">
         <div class="weui-cell__bd">
-            <p><i class="icon-assignment"></i>数据分析</p>
+            <p><i class="icon-accessibility"></i>个人信息</p>
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+    </a>
+        <a class="weui-cell weui-cell_access" href="match_list.html">
+        <div class="weui-cell__bd">
+            <p><i class="icon-person-add"></i>赛事报名</p>
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+    </a>
+    <a class="weui-cell weui-cell_access" href="history.html">
+        <div class="weui-cell__bd">
+            <p><i class="icon-assignment"></i>购买记录</p>
         </div>
         <div class="weui-cell__ft">
         </div>
@@ -28,13 +42,7 @@
         <div class="weui-cell__ft">
         </div>
     </a>
-    <a class="weui-cell weui-cell_access" href="vip.html">
-        <div class="weui-cell__bd">
-            <p><i class="icon-vip2"></i>会员中心</p>
-        </div>
-        <div class="weui-cell__ft">
-        </div>
-    </a>
+
 </div>
 <div class="weui-tabbar">
     <a href="live_center.html" class="weui-tabbar__item">

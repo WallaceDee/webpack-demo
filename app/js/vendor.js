@@ -3,6 +3,7 @@ import 'jquery-weui/dist/css/jquery-weui.css' //使用require导入css文件
 import '../css/style.css' //使用require导入css文件
 import 'jquery-weui/dist/js/jquery-weui.min.js'
 import { domain } from 'config'
+
 window.domain = domain;
 var curr_url = window.location.href.split('#')[0];
 var get_code_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxba58edcce1726b50&redirect_uri=" + curr_url + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
@@ -32,7 +33,9 @@ Date.prototype.format = function(fmt) {
     return fmt;
 };
 
-(function($) {
+
+    
+;(function($) {
     "use strict";
     $.extend($.fn, {
         validate: function() {
@@ -141,24 +144,13 @@ Date.prototype.format = function(fmt) {
                         $.toptip(msg, "warning");
                         $("#page-player-data").html('<div class="weui-loadmore weui-loadmore_line"><span class="weui-loadmore__tips">暂无数据</span></div>');
                     }
-
-
-
                 }
-
                 console.error(XMLHttpRequest.status + "-" + XMLHttpRequest.readyState + "-" + textStatus + "-" + errorThrown);
             }
         });
     }
 })($);
-
-
-
-
-
-
-
-var token = "";
+window.token = "";
 
 if ($.getCache("token") !== null) {
     token = $.getCache("token");
@@ -183,3 +175,10 @@ if ($.getCache("token") !== null) {
 
     console.log("window.token=" + token);
 }
+
+
+
+
+
+
+

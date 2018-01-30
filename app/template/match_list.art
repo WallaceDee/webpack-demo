@@ -1,0 +1,14 @@
+{{each data as list i}}
+<li>
+    <a href="match_detail.html?id={{list.id}}" class="item-link item-content">
+        <div class="item-media"><span style="background-image: url({{list.main_img_url}});"></span></div>
+        <div class="item-inner">
+            <div class="item-title-row">
+                <div class="item-title">{{list.title}}</div>
+            </div>
+            <div class="item-subtitle">比赛时间：{{list.play_time}}</div>
+            <div class="item-text">{{list.summary}}</div>
+        </div>
+    </a>
+</li>
+{{/each}}

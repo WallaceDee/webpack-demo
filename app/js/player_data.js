@@ -4,7 +4,7 @@ $(document).ready(function($) {
         async: false,
         type: "get",
         url: domain + "/api/v1/user/info"
-    }).responseJSON.is_member;
+    }).responseJSON.member_status===1;
 
     if (!is_member) {
         $.modal({
