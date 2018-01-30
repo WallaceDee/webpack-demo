@@ -12,8 +12,17 @@ $(document).ready(function() {
         url: domain + "/api/v1/member/info",
         success: function(data) {
             console.log(data);
-            data.is_member=is_member;
+            data.is_member = is_member;
             $("#page-vip").html(template(data));
+        },
+        error: function(xhr) {
+            var data = xhr.responseJSON;
+            data.is_member = is_member;
+            	console.log("----------------------------"+data.error_code === 30002)
+            if (xhr.status === 404 && data.error_code === 30002) {
+
+                $("#page-vip").html(template(data));
+            }
         }
     });
 });

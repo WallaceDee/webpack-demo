@@ -96,6 +96,9 @@ Date.prototype.format = function(fmt) {
             success: function(data) {
                 console.log(data);
             },
+            error: function(data) {
+                console.log(data);
+            },
             showLoader: false
         };
         var opt = $.extend(default_opt, option);
@@ -118,19 +121,29 @@ Date.prototype.format = function(fmt) {
                 }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
+                opt.error(XMLHttpRequest);
                 //统一处理错误
                 var data = XMLHttpRequest.responseJSON;
                 var error_code = data.error_code;
-                var msg=data.msg;
+                var msg = data.msg;
                 //token过期
-                if (XMLHttpRequest.status === 401 && error_code === 10003) {
-                    $.setCache("token", null);
-                    window.location.href = get_code_url;
+                if (XMLHttpRequest.status === 401) {
+                    if (error_code === 10003) {
+                        $.setCache("token", null);
+                        window.location.href = get_code_url;
+                    }
+
+
                 }
                 //
-                if (XMLHttpRequest.status === 404 && error_code === 30003) {
-                    $.toptip(msg,"warning");
-                    $("#page-player-data").html('<div class="weui-loadmore weui-loadmore_line"><span class="weui-loadmore__tips">暂无数据</span></div>')
+                if (XMLHttpRequest.status === 404) {
+                    if (error_code === 30003 && $("#page-player-data").length === 1) {
+                        $.toptip(msg, "warning");
+                        $("#page-player-data").html('<div class="weui-loadmore weui-loadmore_line"><span class="weui-loadmore__tips">暂无数据</span></div>');
+                    }
+
+
+
                 }
 
                 console.error(XMLHttpRequest.status + "-" + XMLHttpRequest.readyState + "-" + textStatus + "-" + errorThrown);
