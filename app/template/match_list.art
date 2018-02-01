@@ -1,4 +1,4 @@
-{{each data as list i}}
+{{each data list i}}
 <li>
     <a href="match_detail.html?id={{list.id}}" class="item-link item-content">
         <div class="item-media"><span style="background-image: url({{list.main_img_url}});"></span></div>

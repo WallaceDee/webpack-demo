@@ -27,4 +27,12 @@
             数据分析
         </p>
     </a>
+    <a href="match_list.html" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+            <i class="icon-person-add"></i>
+        </div>
+        <p class="weui-grid__label">
+            赛事报名
+        </p>
+    </a>
 </div>

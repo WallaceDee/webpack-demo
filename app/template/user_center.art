@@ -21,13 +21,6 @@
         <div class="weui-cell__ft">
         </div>
     </a>
-        <a class="weui-cell weui-cell_access" href="match_list.html">
-        <div class="weui-cell__bd">
-            <p><i class="icon-person-add"></i>赛事报名</p>
-        </div>
-        <div class="weui-cell__ft">
-        </div>
-    </a>
     <a class="weui-cell weui-cell_access" href="history.html">
         <div class="weui-cell__bd">
             <p><i class="icon-assignment"></i>购买记录</p>

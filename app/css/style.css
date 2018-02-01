@@ -703,17 +703,6 @@ html.pixel-ratio-3 .card-footer:before {
     }
 }
 
-.list-block ul ul {
-    padding-left: 2.25rem;
-}
-
-.list-block ul ul:before {
-    display: none;
-}
-
-.list-block ul ul:after {
-    display: none;
-}
 
 .list-block .align-top,
 .list-block .align-top .item-content,
@@ -1566,7 +1555,9 @@ i.icon-unknow {
     background-size: cover;
 }
 
-
+#page-live-center .weui-media-box__info{
+    margin-top: .25rem;
+}
 #page-live-center .weui-tab .weui-navbar i {
     font-size: 1rem;
 

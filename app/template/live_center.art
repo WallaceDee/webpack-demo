@@ -1,12 +1,12 @@
-              <li class="card">
-                                <span class="surface" style="background-image: url(http://www.michellelee.top/tmp/uploads/20180130/ed56ddd9c5af9ad5748dbadf2634bbc5.jpg)"></span>
-                                <div class="card-content">
-                                    <h4 class="weui-media-box__title">标题一</h4>
-                                    <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
-                                    <ul class="weui-media-box__info">
-                                        <li class="weui-media-box__info__meta">文字来源</li>
-                                        <li class="weui-media-box__info__meta">时间</li>
-                                        <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</li>
-                                    </ul>
-                                </div>
-                            </li>
+{{each data list i}}
+<li class="card">
+    <span class="surface" style="background-image: url({{list.main_img_url}})"></span>
+    <div class="card-content">
+        <h4 class="weui-media-box__title">{{list.title}}</h4>
+        <p class="weui-media-box__desc">{{if list.summary!=""}}{{list.summary}}{{else}}暂无简介{{/if}}</p>
+        <ul class="weui-media-box__info">
+            <li class="weui-media-box__info__meta">比赛时间：{{list.play_time}}</li>
+        </ul>
+    </div>
+</li>
+{{/each}}
