@@ -42,3 +42,4 @@ var webSocketInit = function(json) {
 
     return websocket;
 }
+module.exports=webSocketInit;

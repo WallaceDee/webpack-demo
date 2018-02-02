@@ -5,7 +5,7 @@ import 'imports-loader?videojs=video.js/dist/video.cjs.js!video.js/dist/lang/zh-
 //loader
 import 'swiper/dist/css/swiper.css'
 import Swiper from 'swiper/dist/js/swiper.min.js'
-import '../lib/webSocketInit.js'
+import webSocketInit from '../lib/webSocketInit.js'
 const template = require('../template/live.art')
 const msg_template = require('../template/message.art')
 
@@ -43,7 +43,6 @@ $(document).ready(function() {
         onMessage: function(e) {
             var received_msg = e.data;
             $(".messages-auto-layout").append('<div>' + received_msg + '</div>');
-
         }
     })
 
@@ -63,6 +62,7 @@ $(document).ready(function() {
         };
         msg = JSON.stringify(msg);
         ws.send(msg);
+        $("textarea").val("");
         // var temp = analyticEmotion(msg);
         // console.log(temp);
     });
