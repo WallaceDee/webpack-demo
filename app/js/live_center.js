@@ -4,22 +4,21 @@
 
 
 
-     function loadmoreReInit(ele) {
-         $(ele).destroyInfinite();
-         if ($(ele).find('.weui-loadmore').length === 0) {
+     function loadmoreReInit($ele) {
+         $ele.destroyInfinite();
+         if ($ele.find('.weui-loadmore').length === 0) {
              var loadmore_html = '<div class="weui-loadmore"><i class="weui-loading"></i><span class="weui-loadmore__tips">正在加载</span></div>';
-             $(ele).append(loadmore_html);
+             $ele.append(loadmore_html);
          }
-         $(ele).infinite();
+         $ele.infinite();
      }
 
 
      var page = 1;
      var size = 5;
 
-
+     //生成单个的tab上拉加载初始参数
      function creatTabSetting($ele) {
-
          var opt = {};
          opt.itemsPerLoad = size;
          opt.page = page;
@@ -31,43 +30,43 @@
      }
 
      var tab_setting = [];
-
+     //each循环初始化
      $(".weui-tab__bd-item").each(function(index, el) {
          tab_setting[index] = creatTabSetting($(this));
          addItem(tab_setting[index]);
      });
 
-
      $(".weui-tab__bd-item").infinite().on("infinite", function() {
-         var self = this;
-         self.opt = creatTabSetting($(self));
 
-         var self = this;
-         if (self.opt.loading) return;
-         self.opt.loading = true;
-         addItem(self.opt);
-
-
+         var i = $(this).index();
+         var self = tab_setting[i];
+         if (self.loading) return;
+         self.loading = true;
+         addItem(self);
      });
 
 
 
 
-     function addItem(opt) {
+     function addItem(opt, callback1, callback2) {
          $._ajax({
-             async: false,
-             type: "get",
-             url: domain + "/api/v1/competition/begins",
+             url: domain + opt.ele.data("url") + "?page=" + opt.page + "&size=" + opt.itemsPerLoad,
              data: {
-                 page: opt.page,
-                 size: opt.itemsPerLoad
+                 type: opt.ele.data("type")
              },
              success: function(data) {
+                 if (callback1 !== undefined) {
+                     callback1();
+                 }
                  opt.ele.find('.cards-list>ul').append(template(data));
                  console.log(data);
+                 if (callback2 !== undefined) {
+                     callback2();
+                 }
 
                  opt.lastIndex = opt.ele.find('.cards-list>ul>li').length;
                  opt.maxItems = data.total;
+
 
                  if (opt.lastIndex >= opt.maxItems) {
                      // 加载完毕，则注销无限加载事件，以防不必要的加载
@@ -78,6 +77,7 @@
                      opt.page++;
                      opt.loading = false;
                  }
+
              }
          });
      }
@@ -85,16 +85,18 @@
 
      $('.weui-tab__bd-item').pullToRefresh().on('pull-to-refresh', function(done) {
          var self = this;
+         var i = $(self).index();
+         tab_setting[i] = creatTabSetting($(self));
 
-         setTimeout(function() {
-             $(self).find('.cards-list li.card').each(function(index, el) {
-                 if (index > 5) {
-                     $(el).remove();
-                 }
+         addItem(tab_setting[i], function() {
+                 console.log(1);
+                 $(self).find(".cards-list.content>ul").html("");
+             },
+             function() {
+                 loadmoreReInit($(self));
+                 $(self).pullToRefreshDone();
              });
-             loadmoreReInit(self);
-             $(self).pullToRefreshDone();
-         }, 2000);
+
      })
 
  });

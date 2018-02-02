@@ -2,7 +2,7 @@
 <html lang="zh">
 
 <head>
-    <title>直播中心</title>
+    <title>赛事中心</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -17,7 +17,7 @@
                 <a class="weui-navbar__item " href="#tab3"><i class="icon-subscriptions"></i>精彩集锦</a>
             </div>
             <div class="weui-tab__bd">
-                <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+                <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active" data-url="/api/v1/competition/live">
                     <div class="weui-pull-to-refresh__layer">
                         <div class="weui-pull-to-refresh__arrow"></div>
                         <div class="weui-pull-to-refresh__preloader"></div>
@@ -34,7 +34,7 @@
                         <span class="weui-loadmore__tips">正在加载</span>
                     </div>
                 </div>
-                <div id="tab2" class="weui-tab__bd-item">
+                <div id="tab2" class="weui-tab__bd-item" data-url="/api/v1/competition/video" data-type="1">
                     <div class="weui-pull-to-refresh__layer">
                         <div class="weui-pull-to-refresh__arrow"></div>
                         <div class="weui-pull-to-refresh__preloader"></div>
@@ -42,7 +42,7 @@
                         <div class="up">释放刷新</div>
                         <div class="refresh">正在刷新</div>
                     </div>
-                    <div class="list-block cards-list content">
+                    <div class="cards-list content">
                         <ul>
                         </ul>
                     </div>
@@ -51,7 +51,7 @@
                         <span class="weui-loadmore__tips">正在加载</span>
                     </div>
                 </div>
-                <div id="tab3" class="weui-tab__bd-item ">
+                <div id="tab3" class="weui-tab__bd-item" data-url="/api/v1/competition/video" data-type="2">
                     <div class="weui-pull-to-refresh__layer">
                         <div class="weui-pull-to-refresh__arrow"></div>
                         <div class="weui-pull-to-refresh__preloader"></div>
@@ -59,7 +59,7 @@
                         <div class="up">释放刷新</div>
                         <div class="refresh">正在刷新</div>
                     </div>
-                    <div class="list-block cards-list content">
+                    <div class="cards-list content">
                         <ul>
                         </ul>
                     </div>

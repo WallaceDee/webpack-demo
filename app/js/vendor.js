@@ -34,8 +34,9 @@ Date.prototype.format = function(fmt) {
 };
 
 
-    
-;(function($) {
+
+;
+(function($) {
     "use strict";
     $.extend($.fn, {
         validate: function() {
@@ -97,10 +98,10 @@ Date.prototype.format = function(fmt) {
             dataType: "json",
             async: true,
             success: function(data) {
-                console.log(data);
+            
             },
             error: function(data) {
-                console.log(data);
+
             },
             showLoader: false
         };
@@ -122,6 +123,7 @@ Date.prototype.format = function(fmt) {
                 if (opt.showLoader) {
                     $.hideLoading();
                 }
+                console.log(data);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 opt.error(XMLHttpRequest);
@@ -175,10 +177,3 @@ if ($.getCache("token") !== null) {
 
     console.log("window.token=" + token);
 }
-
-
-
-
-
-
-

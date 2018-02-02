@@ -1,0 +1,39 @@
+<video id="video" class="video-js vjs-default-skin" controls webkit-playsinline="true" playsinline="true">
+    <source src="{{play_m3u8}}" type="application/x-mpegURL">
+    <source src="{{play_flv}}" type="video/x-flv">
+</video>
+<div class="content">
+    <div class="weui-tab">
+        <div class="weui-navbar">
+            <a class="weui-navbar__item weui-bar__item--on" href="#tab1"><i class="icon-message"></i>互动</a>
+            <a class="weui-navbar__item" href="#tab2"><i class="icon-library-books"></i>简介</a>
+        </div>
+        <div class="weui-tab__bd">
+            <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+                <div class="messages-wrapper">
+                    <div class="page-content messages-content">
+                        <div class="messages messages-auto-layout">
+                        </div>
+                    </div>
+                </div>
+                <div class="emoji-wrapper">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="weui-tabbar">
+                    <div class="enter-wrapper">
+                        <textarea data-origin-height="30"></textarea>
+                    </div>
+                    <button class="emoji-btn"><i class="icon-emoji"></i></button>
+                    <button class="send-btn">发送</button>
+                </div>
+            </div>
+            <div id="tab2" class="weui-tab__bd-item">
+                {{@summary}}
+            </div>
+        </div>
+    </div>
+</div>

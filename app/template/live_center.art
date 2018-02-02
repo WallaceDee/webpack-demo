@@ -1,12 +1,14 @@
 {{each data list i}}
 <li class="card">
+    <a href="live.html?id={{list.id}}">
     <span class="surface" style="background-image: url({{list.main_img_url}})"></span>
     <div class="card-content">
         <h4 class="weui-media-box__title">{{list.title}}</h4>
-        <p class="weui-media-box__desc">{{if list.summary!=""}}{{list.summary}}{{else}}暂无简介{{/if}}</p>
+<!--         <p class="weui-media-box__desc">{{if list.summary!=""}}{{list.summary}}{{else}}暂无简介{{/if}}</p>
         <ul class="weui-media-box__info">
             <li class="weui-media-box__info__meta">比赛时间：{{list.play_time}}</li>
-        </ul>
+        </ul> -->
     </div>
+</a>
 </li>
 {{/each}}
