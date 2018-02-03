@@ -1,4 +1,4 @@
-var path = require('path');
+﻿var path = require('path');
 var webpack = require('webpack');
 var glob = require('glob');
 var entries = getEntry('./app/js/**/*.js'); // 获得入口js文件
@@ -79,7 +79,7 @@ var config = {
     plugins: [
         new vConsolePlugin({
             filter: [], // 需要过滤的入口文件
-            enable: false // 发布代码前记得改回 false
+            enable: true// 发布代码前记得改回 false
         }),
         // new webpack.ProvidePlugin({
         //     videojs: 'video.js'

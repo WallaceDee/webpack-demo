@@ -9,7 +9,9 @@
     url(../fonts/icomoon.woff) format('woff'),
     url(../fonts/icomoon.svg) format('svg');
 }
-
+html{
+    background-color: #f8f8f8;
+}
 body,
 html {
     height: 100%;
@@ -1832,7 +1834,10 @@ img.emoji {
     width: 1.8em;
 }
 
-
+#page-videos #video{width: 100%;height: 200px;position: relative;z-index: 2;}
+#page-videos .weui-media-box__desc {
+    -webkit-line-clamp: initial;
+}
 #page-vip .avatar {
     display: block;
     width: 60px;
@@ -1984,4 +1989,48 @@ img.emoji {
 
 #page-match-detail .weui-tabbar .weui-btn {
     border-radius: 0;
+}
+
+
+#page-player-data{
+overflow: hidden;
+    height: 100%;
+}
+#page-player-data .content{
+    padding: 0 15px;
+}
+
+#page-player-data .content li {
+    margin: 10px 0;
+    background-color: #fff;
+    overflow: hidden;
+    border-radius: 2px;
+    cursor: pointer;
+}
+#page-player-data .content .weui-flex {
+    padding: 20px;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+#page-player-data .content .weui-flex img {
+    width: 30px;
+    height: 30px;
+}
+#page-player-data .content li.js_show .weui-flex {
+    opacity: .4;
+}
+
+#page-player-data .content .page__category {
+    height: 0;
+    overflow: hidden;
+}
+#page-player-data .content .page__category {
+    height: 0;
+    overflow: hidden;
+}
+#page-player-data .content li.js_show .page__category{
+        height: auto;
 }

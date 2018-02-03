@@ -1,6 +1,6 @@
 {{each data list i}}
 <li class="card">
-    <a href="live.html?id={{list.id}}">
+    <a href="{{if list.file===undefined}}live{{else}}videos{{/if}}.html?id={{list.id}}">
     <span class="surface" style="background-image: url({{list.main_img_url}})"></span>
     <div class="card-content">
         <h4 class="weui-media-box__title">{{list.title}}</h4>

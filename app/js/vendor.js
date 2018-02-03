@@ -159,7 +159,7 @@ if ($.getCache("token") !== null) {
 } else {
     var code = $.getParameter("code");
     if (code === null) {
-        window.location.href = get_code_url;
+    window.location.href = get_code_url;
     }
     console.log(code);
     token = $._ajax({

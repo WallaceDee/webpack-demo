@@ -36,8 +36,9 @@ $(document).ready(function() {
     }).responseJSON;
 
     var ws = webSocketInit({
-        url: 'ws://120.79.146.180:19830',
+         url: 'ws://120.79.146.180:19840',
         onOpen: function(e) {
+               console.log(e);
             console.log("链接成功");
         },
         onMessage: function(e) {

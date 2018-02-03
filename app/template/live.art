@@ -1,4 +1,4 @@
-<video id="video" class="video-js vjs-default-skin" controls webkit-playsinline="true" playsinline="true">
+<video id="video" class="video-js vjs-default-skin  vjs-big-play-centered" controls webkit-playsinline="true" playsinline="true">
     <source src="{{play_m3u8}}" type="application/x-mpegURL">
     <source src="{{play_flv}}" type="video/x-flv">
 </video>

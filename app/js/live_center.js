@@ -58,6 +58,7 @@
                  if (callback1 !== undefined) {
                      callback1();
                  }
+
                  opt.ele.find('.cards-list>ul').append(template(data));
                  console.log(data);
                  if (callback2 !== undefined) {
