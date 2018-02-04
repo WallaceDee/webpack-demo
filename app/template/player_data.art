@@ -1,0 +1,20 @@
+{{each data list i}}
+<li>
+    <div class="weui-flex js_category">
+        <p class="weui-flex__item">{{list.name}}</p>
+        <img src="{{list.logo}}" alt="">
+    </div>
+    <div class="page__category js_categoryInner">
+        <div class="weui-cells page__category-content">
+            {{each list.competitions competitions j}}
+            <a class="weui-cell weui-cell_access js_item" href="player_data_detail.html?id={{competitions.id}}">
+                <div class="weui-cell__bd">
+                    <p>{{competitions.title}}</p>
+                </div>
+                <div class="weui-cell__ft"></div>
+            </a>
+            {{/each}}
+        </div>
+    </div>
+</li>
+{{/each}}
