@@ -123,17 +123,15 @@
              $searchBar.addClass('weui-search-bar_focusing');
              $searchInput.focus();
          });
-         $searchInput
-             .on('blur', function() {
-                 if (!this.value.length) cancelSearch();
-             })
-             .on('input', function() {
-                 if (this.value.length) {
-                     $searchResult.show();
-                 } else {
-                     $searchResult.hide();
-                 }
-             });
+         $searchInput.on('blur', function() {
+             if (!this.value.length) cancelSearch();
+         }).on('input', function() {
+             if (this.value.length) {
+                 $searchResult.show();
+             } else {
+                 $searchResult.hide();
+             }
+         });
          $searchClear.on('click', function() {
              hideSearchResult();
              $searchInput.focus();
@@ -142,15 +140,12 @@
              cancelSearch();
              $searchInput.blur();
          });
-
-
-
          $searchInput.on('keypress', function(event) {
-
              if (event.keyCode == 13) {
-                 alert('你输入的内容为1：');
                  event.preventDefault();　　
                  event.stopPropagation();
+               window.location.href="search.html?keyword="+$searchInput.val();
+
              }
          });
      });

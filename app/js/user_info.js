@@ -13,7 +13,7 @@ $(document).ready(function() {
 
     $("#page-user-info").html(template(data));
 
-    $(document).on("click", "#page-user-info .name-cell", function() {
+    $("#page-user-info").on("click", ".name-cell", function() {
         var ex_value = $(this).find(".weui-cell__ft").text();
 
         $.prompt({
@@ -100,7 +100,7 @@ $(document).ready(function() {
     $(".gender-input").picker({
         title: "请选择性别",
         toolbarTemplate: '<div class="toolbar">\
-          <div class="toolbar-inner">\
+          <div class="toolbar-inner"><a href="javascript:;" class="picker-button close-picker">关闭</a>\
           <h1 class="title">{{title}}</h1>\
           </div>\
           </div>',

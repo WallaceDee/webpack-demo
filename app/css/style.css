@@ -17,7 +17,7 @@ html {
     height: 100%;
     -webkit-tap-highlight-color: transparent;
 }
-
+ul,li{list-style: none;}
 [class^='icon-'],
 [class*=' icon-'] {
     /* use !important to prevent issues with browser extensions that change fonts */
@@ -68,6 +68,9 @@ html {
 .icon-accessibility:before {
   content: "\e84e";
 }
+.icon-user:before {
+  content: "\e853";
+}
 .icon-announcement:before {
   content: "\e85a";
 }
@@ -92,11 +95,9 @@ html {
 .icon-male:before {
   content: "\f222";
 }
-.icon-user:before {
-  content: "\e853";
+.icon-play2:before {
+  content: "\e037";
 }
-
-
 
 
 
@@ -2038,3 +2039,33 @@ margin: 0;
 padding: 0;
 
 }
+#page-search{
+    height: 100%;
+}
+#page-search .weui-search-bar{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;z-index: 500;
+}
+#page-search .content{
+    padding-top: 44px;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+      -webkit-overflow-scrolling: touch;
+}
+#page-search .weui-media-box_appmsg .weui-media-box__hd{
+    width: 80px;
+    height: 80px;
+}
+#page-search .weui-media-box__hd>span.surface{
+display: block;
+width: 100%;
+height: 100%;
+background-color: #eee;
+background-position: center;
+background-size: cover;
+}
+#page-search .weui-media-box__info{
+    margin-top:5px;}

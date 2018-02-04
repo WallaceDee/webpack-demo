@@ -4,10 +4,12 @@
     <span class="surface" style="background-image: url({{list.main_img_url}})"></span>
     <div class="card-content">
         <h4 class="weui-media-box__title">{{list.title}}</h4>
-<!--         <p class="weui-media-box__desc">{{if list.summary!=""}}{{list.summary}}{{else}}暂无简介{{/if}}</p>
-        <ul class="weui-media-box__info">
-            <li class="weui-media-box__info__meta">比赛时间：{{list.play_time}}</li>
-        </ul> -->
+<!--         <p class="weui-media-box__desc">{{if list.summary!=""}}{{list.summary}}{{else}}暂无简介{{/if}}</p>-->
+{{if list.file===undefined}}{{else}}
+	<ul class="weui-media-box__info">
+            <li class="weui-media-box__info__meta"><i class="icon-play2"></i>{{list.browse_num}}</li>
+        </ul> {{/if}}
+       
     </div>
 </a>
 </li>

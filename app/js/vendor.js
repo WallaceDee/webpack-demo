@@ -184,12 +184,12 @@ $._ajax({
     url: domain + "/api/v1/wxconfig",
     async: false,
     data: {
-        cur_url: curr_url,
+        cur_url: encodeURIComponent(curr_url),
     },
     success: function(data) {
         console.log(data);
         wx.config({
-            debug: true,
+            debug: false,
             appId: data.appId,
             timestamp: data.timestamp,
             nonceStr: data.nonceStr,
