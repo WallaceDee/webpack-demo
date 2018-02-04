@@ -21,7 +21,7 @@
     </a>
     <a href="player_data.html" class="weui-grid js_grid">
         <div class="weui-grid__icon">
-            <i class="icon-assignment"></i>
+            <i class="icon-library-books"></i>
         </div>
         <p class="weui-grid__label">
             数据分析

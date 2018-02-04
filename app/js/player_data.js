@@ -1,4 +1,4 @@
- const template = require('../template/play_data.art')
+ const template = require('../template/player_data.art')
 
 $(document).ready(function($) {
     var is_member = $._ajax({
