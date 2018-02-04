@@ -1,15 +1,14 @@
 <video id="video" class="video-js vjs-default-skin  vjs-big-play-centered" controls webkit-playsinline="true" playsinline="true">
-    <source src="{{play_flv}}" type="video/mp4">
+    <source src="{{file.name}}" type="video/mp4">
 </video>
 <div class="content">
    <div class="weui-media-box weui-media-box_text">
-            <h4 class="weui-media-box__title"> 现场直播</h4>
+            <h4 class="weui-media-box__title">{{title}}</h4>
             <ul class="weui-media-box__info">
-              <li class="weui-media-box__info__meta">浏览次数:0</li>
-          <!--     <li class="weui-media-box__info__meta">时间</li>
+              <li class="weui-media-box__info__meta">浏览次数:{{browse_num}}</li>
+              <!--<li class="weui-media-box__info__meta">时间</li>
               <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</li> -->
             </ul>
-            <p class="weui-media-box__desc"></p>
-
+            <p class="weui-media-box__desc">{{@summary}}</p>
           </div>
 </div>

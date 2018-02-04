@@ -3,7 +3,6 @@
  $(document).ready(function() {
 
 
-
      function loadmoreReInit($ele) {
          $ele.destroyInfinite();
          if ($ele.find('.weui-loadmore').length === 0) {
@@ -98,6 +97,62 @@
                  $(self).pullToRefreshDone();
              });
 
-     })
+     });
+
+
+     $(function() {
+         var $searchBar = $('#searchBar'),
+             $searchResult = $('#searchResult'),
+             $searchText = $('#searchText'),
+             $searchInput = $('#searchInput'),
+             $searchClear = $('#searchClear'),
+             $searchCancel = $('#searchCancel');
+
+         function hideSearchResult() {
+             $searchResult.hide();
+             $searchInput.val('');
+         }
+
+         function cancelSearch() {
+             hideSearchResult();
+             $searchBar.removeClass('weui-search-bar_focusing');
+             $searchText.show();
+         }
+
+         $searchText.on('click', function() {
+             $searchBar.addClass('weui-search-bar_focusing');
+             $searchInput.focus();
+         });
+         $searchInput
+             .on('blur', function() {
+                 if (!this.value.length) cancelSearch();
+             })
+             .on('input', function() {
+                 if (this.value.length) {
+                     $searchResult.show();
+                 } else {
+                     $searchResult.hide();
+                 }
+             });
+         $searchClear.on('click', function() {
+             hideSearchResult();
+             $searchInput.focus();
+         });
+         $searchCancel.on('click', function() {
+             cancelSearch();
+             $searchInput.blur();
+         });
+
+
+
+         $searchInput.on('keypress', function(event) {
+
+             if (event.keyCode == 13) {
+                 alert('你输入的内容为1：');
+                 event.preventDefault();　　
+                 event.stopPropagation();
+             }
+         });
+     });
 
  });

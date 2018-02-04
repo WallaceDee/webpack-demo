@@ -98,7 +98,7 @@ Date.prototype.format = function(fmt) {
             dataType: "json",
             async: true,
             success: function(data) {
-            
+
             },
             error: function(data) {
 
@@ -159,7 +159,7 @@ if ($.getCache("token") !== null) {
 } else {
     var code = $.getParameter("code");
     if (code === null) {
-    window.location.href = get_code_url;
+        window.location.href = get_code_url;
     }
     console.log(code);
     token = $._ajax({
@@ -177,3 +177,61 @@ if ($.getCache("token") !== null) {
 
     console.log("window.token=" + token);
 }
+
+console.log("---------------------------");
+console.log(curr_url);
+$._ajax({
+    url: domain + "/api/v1/wxconfig",
+    async: false,
+    data: {
+        cur_url: curr_url,
+    },
+    success: function(data) {
+        console.log(data);
+        wx.config({
+            debug: true,
+            appId: data.appId,
+            timestamp: data.timestamp,
+            nonceStr: data.nonceStr,
+            signature: data.signature,
+            jsApiList: [
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo',
+                'onMenuShareQZone',
+                'hideMenuItems',
+                'showMenuItems',
+                'hideAllNonBaseMenuItem',
+                'showAllNonBaseMenuItem',
+                'translateVoice',
+                'startRecord',
+                'stopRecord',
+                'onVoiceRecordEnd',
+                'playVoice',
+                'onVoicePlayEnd',
+                'pauseVoice',
+                'stopVoice',
+                'uploadVoice',
+                'downloadVoice',
+                'chooseImage',
+                'previewImage',
+                'uploadImage',
+                'downloadImage',
+                'getNetworkType',
+                'openLocation',
+                'getLocation',
+                'hideOptionMenu',
+                'showOptionMenu',
+                'closeWindow',
+                'scanQRCode',
+                'chooseWXPay',
+                'openProductSpecificView',
+                'addCard',
+                'chooseCard',
+                'openCard'
+            ]
+        });
+    }
+});

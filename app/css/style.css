@@ -1541,6 +1541,17 @@ i.icon-unknow {
     background-position: center center;
     background-size: cover;
 }
+
+#page-live-center .weui-search-bar{
+        position: absolute;
+        z-index: 500;
+    width: 100%;
+}
+#page-live-center .weui-navbar{
+        top: 44px;
+}
+#page-live-center .weui-tab{    padding-top: 44px;
+    box-sizing: border-box;}
 #page-live-center .card a h4{
     color: #000;
 }
