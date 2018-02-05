@@ -1624,7 +1624,7 @@ height: 100%;
 #page-live .weui-tab__bd-item{
     position: relative;
 }
-#page-live .message-wrapper{height: 100%;padding-bottom: 44px;box-sizing: border-box;overflow: auto;}
+#page-live .messages-wrapper{height: 100%;padding-bottom: 44px;box-sizing: border-box;overflow: auto;}
 #page-live .emoji-wrapper {
     position: absolute;
     z-index: 2;
