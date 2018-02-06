@@ -11,6 +11,14 @@ runtime.gender2class = function(value) {
     }
     return name;
 };
+runtime.timestamp2datetime=function(timestamp) {
+    if (timestamp === "" || timestamp === null || timestamp === undefined) {
+        return "未知时间";
+    }
+    var temp = new Date(timestamp * 1000);
+    return temp.format("yyyy-MM-dd hh:mm");
+
+}
 
 
 module.exports = runtime;

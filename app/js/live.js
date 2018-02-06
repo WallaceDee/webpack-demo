@@ -6,17 +6,21 @@ import 'imports-loader?videojs=video.js/dist/video.cjs.js!video.js/dist/lang/zh-
 import 'swiper/dist/css/swiper.css'
 import Swiper from 'swiper/dist/js/swiper.min.js'
 import webSocketInit from '../lib/webSocketInit.js'
-import { emoji as emoji_list } from 'config'
-
+import { emojiData } from 'config'
+import { emojiPath } from 'config'
+import { webSocketUrl } from 'config'
+import 'art-template-filter'
 const template = require('../template/live.art')
 const msg_template = require('../template/message.art')
 
 $(document).ready(function() {
-    var curr_id = $.getParameter("id");
+    //curr_room当前房间号
+    var curr_room = $.getParameter("id");
+
     var data = $._ajax({
         async: false,
         type: "get",
-        url: domain + "/api/v1/competitionlive/" + curr_id
+        url: domain + "/api/v1/competitionlive/" + curr_room
     }).responseJSON;
     console.log(data);
     $("#page-live").html(template(data));
@@ -38,17 +42,57 @@ $(document).ready(function() {
     }).responseJSON;
 
     var ws = webSocketInit({
-        url: 'ws://120.79.146.180:19840',
+        url: webSocketUrl,
         onOpen: function(e) {
             console.log(e);
             console.log("链接成功");
         },
-        onMessage: function(e) {
-            var received_data = JSON.parse(e.data);
-            $("#page-live .messages-auto-layout").append(msg_template(received_data));
-        }
-    })
+        onMessage: function(MessageEvent) {
+            var msg = MessageEvent.data;
+            console.log(typeof(MessageEvent.data));
+            console.log(msg === "@heart");
+            if (msg === "@heart") {
 
+            } else {
+                console.log(msg);
+                //todo 
+                var received_data = JSON.parse(msg);
+                if (received_data.room_id === curr_room) {
+                    $("#page-live .messages-auto-layout").append(msg_template(received_data));
+                    $("#page-live .messages-wrapper").finish().animate({ "scrollTop": $('#page-live .messages-wrapper')[0].scrollHeight }, 1000);
+                } else {
+                    //不是当前房间号的对话
+                }
+            }
+
+        }
+    });
+// $("#page-live .message").on('click', '.selector', function(event) {
+//     event.preventDefault();
+//     /* Act on the event */
+// });
+    var heartCheck = {
+        timeout: 20000, //计时器设定为20s
+        timeoutObj: null,
+        serverTimeoutObj: null,
+        reset: function() {
+            clearTimeout(this.timeoutObj);
+            clearTimeout(this.serverTimeoutObj);
+            this.start();
+        },
+        start: function() {
+            var self = this;
+            this.timeoutObj = setTimeout(function() {
+                //向服务器发送ping消息
+                pingToServer();
+                //计算答复的超时时间
+                self.serverTimeoutObj = setTimeout(function() {
+                    //如果调用onclose会执行reconnect，导致重连两次，因此直接调用close()关闭连接
+                    websocket.close();
+                }, self.timeout);
+            }, this.timeout);
+        }
+    };
 
     $(".send-btn").click(function(event) {
         /* Act on the event */
@@ -56,15 +100,17 @@ $(document).ready(function() {
         // {“type”:”SEND_ONE”,”room_id”:”1”,”connect_id”:”1”,”content”:”扑街”,”username”:”caicaizi”,”head_img”:”http://www.michellelee.top/tmp/upload/20180105/dsfadfafadfa.jpg”}
         var msg = {
             type: "SEND_ALL",
-            room_id: curr_id,
-            connect_id: userInfo.mobile,
-            content:analyticEmotion($("textarea").val()),
-            username: userInfo.username,
-            head_img: userInfo.head_img
+            room_id: curr_room,
+            // connect_id: userInfo.mobile,
+            content: analyticEmotion($("textarea").val()),
+            user: {
+                username: userInfo.username,
+                head_img: userInfo.head_img
+            }
         };
-        msg = JSON.stringify(msg);
-        ws.send(msg);
-        $("textarea").val("");
+        console.log(msg);
+        ws.send(JSON.stringify(msg));
+         $("textarea").val("");
         // var temp = analyticEmotion(msg);
         // console.log(temp);
     });
@@ -73,14 +119,14 @@ $(document).ready(function() {
     var emojiHT = new Hashtable();
     var temp = "";
     var result = "";
-    for (var i = 0; i < emoji_list.length; i++) {
-        emojiHT.put(emoji_list[i].name, emoji_list[i].path);
+    for (var i = 0; i < emojiData.length; i++) {
+        emojiHT.put(emojiData[i].name, emojiData[i].path);
         if (i === 0) {
             temp += '<div class="swiper-slide"><ul>';
         } else if (i % 24 === 0) {
             temp += '</ul></div><div class="swiper-slide"><ul>';
         }
-        temp += '<li data-emoji="[' + emoji_list[i].name + ']"><span><em style="background-position: 0px ' + -2 * i + 'em;"></em></span></li>';
+        temp += '<li data-emoji="[' + emojiData[i].name + ']"><span><em style="background-position: 0px ' + -2 * i + 'em;"></em></span></li>';
     }
     temp += '</ul></div>';
     $(".swiper-wrapper").append(temp);
@@ -93,6 +139,9 @@ $(document).ready(function() {
     $(".emoji-btn").click(function(event) {
         /* Act on the event */
         $("#page-live").toggleClass('opened-emoji-wrapper');
+        if ($("#page-live").hasClass('opened-emoji-wrapper')) {
+            $("#page-live .messages-wrapper").finish().animate({ "scrollTop": $('#page-live .messages-wrapper')[0].scrollHeight }, 1000);
+        }
     });
 
 
@@ -128,13 +177,15 @@ $(document).ready(function() {
     }
     //替换表情
     function analyticEmotion(str) {
-        if (typeof(str) != "undefined") {
+        if (str !== "") {
             var sArr = str.match(/\[.*?\]/g);
-            for (var i = 0; i < sArr.length; i++) {
-                var k = sArr[i].replace(/\[|]/g, '')
-                if (emojiHT.containsKey(k)) {
-                    var reStr = "<img class=\"emoji\" src=\"/h5/images/" + emojiHT.get(k) + "\"/>";
-                    str = str.replace(sArr[i], reStr);
+            if (sArr !== null) {
+                for (var i = 0; i < sArr.length; i++) {
+                    var k = sArr[i].replace(/\[|]/g, '')
+                    if (emojiHT.containsKey(k)) {
+                        var reStr = '<img class="emoji" src="' + emojiPath + emojiHT.get(k) + '"/>';
+                        str = str.replace(sArr[i], reStr);
+                    }
                 }
             }
         }
@@ -144,6 +195,8 @@ $(document).ready(function() {
     function setHeight(element) {
         if (element.scrollHeight < $(element).data("origin-height") + 1) return;
         $(element).css({ 'height': 'auto', 'overflow-y': 'hidden' }).height(element.scrollHeight);
+
+        
     }
     $('textarea').each(function() {
         setHeight(this);
@@ -152,8 +205,7 @@ $(document).ready(function() {
     }).on('focus', function() {
         var $scroller = $(document);
         var h = $(document).height();
-        if ($("#page-live").hasClass('opened-emoji-wrapper'))
-        {
+        if ($("#page-live").hasClass('opened-emoji-wrapper')) {
             $scroller.scrollTop(h);
         }
         $("#page-live").removeClass('opened-emoji-wrapper');

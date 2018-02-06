@@ -2,11 +2,11 @@
 <div class="messages-date">{{@content}}</div>
 {{else if type==="SEND_ALL"}}
 <div class="message message-received message-with-avatar message-appear-from-bottom message-last message-with-tail message-first">
-    <div class="message-name">{{username}}</div>
+    <div class="message-name">{{user.username}}</div>
     <div class="message-text">{{@content}}
-        <div class="message-date">Feb 9, 13:11</div>
+        <div class="message-date">{{msg_time|timestamp2datetime}}</div>
     </div>
-    <div style="background-image:url({{head_img}})" class="message-avatar"></div>
+    <div style="background-image:url({{user.head_img}})" class="message-avatar"></div>
 </div>
 {{/if}}
 <!-- 
