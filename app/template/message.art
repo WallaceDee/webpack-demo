@@ -1,6 +1,7 @@
 {{if type==="LOGIN"}}
 <div class="messages-date">{{@content}}</div>
 {{else if type==="SEND_ALL"}}
+{{if myself===false}}
 <div class="message message-received message-with-avatar message-appear-from-bottom message-last message-with-tail message-first">
     <div class="message-name">{{user.username}}</div>
     <div class="message-text">{{@content}}
@@ -8,11 +9,12 @@
     </div>
     <div style="background-image:url({{user.head_img}})" class="message-avatar"></div>
 </div>
-{{/if}}
-<!-- 
+{{else}}
 <div class="message message-sent message-with-avatar message-appear-from-bottom message-last message-with-tail message-first">
-    <div class="message-text">Hi, Kate
-        <div class="message-date">Feb 9, 12:58</div>
+    <div class="message-text">{{@content}}
+        <div class="message-date">{{msg_time|timestamp2datetime}}</div>
     </div>
-    <div style="background-image:url(http://lorempixel.com/output/people-q-c-200-200-6.jpg)" class="message-avatar"></div>
-</div> -->
+    <div style="background-image:url({{user.head_img}})" class="message-avatar"></div>
+</div>
+{{/if}}
+{{/if}}

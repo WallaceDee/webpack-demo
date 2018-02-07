@@ -67,10 +67,10 @@ $(document).ready(function() {
 
         }
     });
-// $("#page-live .message").on('click', '.selector', function(event) {
-//     event.preventDefault();
-//     /* Act on the event */
-// });
+    // $("#page-live .message").on('click', '.selector', function(event) {
+    //     event.preventDefault();
+    //     /* Act on the event */
+    // });
     var heartCheck = {
         timeout: 20000, //计时器设定为20s
         timeoutObj: null,
@@ -110,7 +110,7 @@ $(document).ready(function() {
         };
         console.log(msg);
         ws.send(JSON.stringify(msg));
-         $("textarea").val("");
+        $("textarea").val("");
         // var temp = analyticEmotion(msg);
         // console.log(temp);
     });
@@ -139,9 +139,9 @@ $(document).ready(function() {
     $(".emoji-btn").click(function(event) {
         /* Act on the event */
         $("#page-live").toggleClass('opened-emoji-wrapper');
-        if ($("#page-live").hasClass('opened-emoji-wrapper')) {
-            $("#page-live .messages-wrapper").finish().animate({ "scrollTop": $('#page-live .messages-wrapper')[0].scrollHeight }, 1000);
-        }
+        // if ($("#page-live").hasClass('opened-emoji-wrapper')) {
+        //     $("#page-live .messages-wrapper").finish().animate({ "scrollTop": $('#page-live .messages-wrapper')[0].scrollHeight }, 1000);
+        // }
     });
 
 
@@ -193,10 +193,11 @@ $(document).ready(function() {
     }
 
     function setHeight(element) {
-        if (element.scrollHeight < $(element).data("origin-height") + 1) return;
+        $(element).css("height", $(element).data("origin-height") + "px"); //不可逆的特征检测，只能每次重置，修改高度
+        if (element.scrollHeight < $(element).data("origin-height") + 1) {
+            return false;
+        }
         $(element).css({ 'height': 'auto', 'overflow-y': 'hidden' }).height(element.scrollHeight);
-
-        
     }
     $('textarea').each(function() {
         setHeight(this);

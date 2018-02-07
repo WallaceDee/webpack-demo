@@ -32,8 +32,8 @@
                 </div>
             </div>
             <div id="tab2" class="weui-tab__bd-item">
-                {{@summary}}
-            </div>
+                <div class="desc-content">{{@summary}}</div>
+                </div>
         </div>
     </div>
 </div>

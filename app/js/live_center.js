@@ -73,10 +73,9 @@
                      opt.ele.destroyInfinite();
                      // 删除加载提示符
                      opt.ele.find(".weui-loadmore").remove();
-                 } else {
-                     opt.page++;
-                     opt.loading = false;
                  }
+                 opt.page++;
+                 opt.loading = false;
 
              }
          });
@@ -144,7 +143,7 @@
              if (event.keyCode == 13) {
                  event.preventDefault();　　
                  event.stopPropagation();
-               window.location.href="search.html?keyword="+$searchInput.val();
+                 window.location.href = "search.html?keyword=" + $searchInput.val();
 
              }
          });

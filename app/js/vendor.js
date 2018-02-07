@@ -3,6 +3,7 @@ import 'jquery-weui/dist/css/jquery-weui.css' //使用require导入css文件
 import '../css/style.css' //使用require导入css文件
 import 'jquery-weui/dist/js/jquery-weui.min.js'
 import { domain } from 'config'
+const no_data_tips_html = require('../template/no_data_tips.art')
 
 window.domain = domain;
 var curr_url = window.location.href.split('#')[0];
@@ -144,7 +145,7 @@ Date.prototype.format = function(fmt) {
                 if (XMLHttpRequest.status === 404) {
                     if (error_code === 30003 && $("#page-player-data").length === 1) {
                         $.toptip(msg, "warning");
-                        $("#page-player-data").html('<div class="weui-loadmore weui-loadmore_line"><span class="weui-loadmore__tips">暂无数据</span></div>');
+                        $("#page-player-data").html(no_data_tips_html());
                     }
                 }
                 console.error(XMLHttpRequest.status + "-" + XMLHttpRequest.readyState + "-" + textStatus + "-" + errorThrown);

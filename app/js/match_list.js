@@ -10,7 +10,7 @@ $(document).ready(function($) {
     opt.maxItems = 0;
     opt.lastIndex = 0;
     opt.loading = false;
-    opt.ele=$("#page-match-list.list-block");
+    opt.ele = $("#page-match-list.list-block");
 
     addItem(opt);
 
@@ -18,14 +18,13 @@ $(document).ready(function($) {
         var self = this;
         if (opt.loading) return;
         opt.loading = true;
-        addItem( opt);
+        addItem(opt);
     });
 
 
 
     function addItem(opt) {
         $._ajax({
-            async: false,
             type: "get",
             url: domain + "/api/v1/competition/begins",
             data: {
@@ -33,7 +32,7 @@ $(document).ready(function($) {
                 size: opt.itemsPerLoad
             },
             success: function(data) {
-                 opt.ele.find("ul").append(template(data));
+                opt.ele.find("ul").append(template(data));
                 console.log(data);
                 opt.lastIndex = opt.ele.find('ul>li').length;
                 opt.maxItems = data.total;
@@ -43,10 +42,10 @@ $(document).ready(function($) {
                     opt.ele.destroyInfinite();
                     // 删除加载提示符
                     opt.ele.find(".weui-loadmore").remove();
-                } else {
-                    opt.page++;
-                    opt.loading = false;
                 }
+                opt.page++;
+                opt.loading = false;
+
             }
         });
     }
