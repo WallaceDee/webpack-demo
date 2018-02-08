@@ -1,38 +1,42 @@
-    {{each data list i}}
-    <li>        <div class="weui-form-preview" data-id="{{list.id}}">
-            <div class="weui-form-preview__hd">
-                <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">商品/服务名称</label>
-                    <em class="weui-form-preview__value">{{list.name}}</em>
-                </div>
-            </div>
-            <div class="weui-form-preview__bd">
-                      <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">订单号</label>
-                    <span class="weui-form-preview__value">{{list.order_no}}</span>
-                </div>
-                <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">价格</label>
-                    <span class="weui-form-preview__value">￥{{list.price}}</span>
-                </div>
-                <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">数量</label>
-                    <span class="weui-form-preview__value">{{list.count}}</span>
-                </div>
-                <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">总计</label>
-                    <span class="weui-form-preview__value">￥{{list.count*list.price}}</span>
-                </div>
-                    <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">订单状态</label>
-                    <span class="weui-form-preview__value">{{if list.status==0}}未支付{{/if}}</span>
-                </div>
-                <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">付款时间</label>
-                    <span class="weui-form-preview__value">2018-01-30 15:20:56</span>
-                </div>
+ {{each data list i}}
+<li>
+    <div class="weui-form-preview" data-id="{{list.id}}">
+        <div class="weui-form-preview__hd">
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">商品/服务名称</label>
+                <em class="weui-form-preview__value">{{list.name}}</em>
             </div>
         </div>
-        </li>
-
-        {{/each}}
+        <div class="weui-form-preview__bd">
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">订单号</label>
+                <span class="weui-form-preview__value">{{list.order_no}}</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">价格</label>
+                <span class="weui-form-preview__value">￥{{list.price}}</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">数量</label>
+                <span class="weui-form-preview__value">{{list.count}}</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">总计</label>
+                <span class="weui-form-preview__value">￥{{list.total_price}}</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">订单状态</label>
+                <span class="weui-form-preview__value">状态码{{list.status}}{{if list.status==0}}未支付{{else if list.status==1}}已完成{{else if list.status==-1}}已关闭{{else if list.status==5}}已取消{{/if}}</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">{{if list.status==1}}支付{{else}}下单{{/if}}时间</label>
+                <span class="weui-form-preview__value">{{if list.status==1}}{{list.pay_time}}{{else}}{{list.create_time}}{{/if}}</span>
+            </div>
+        </div>
+        <div class="weui-form-preview__ft">
+            {{if list.status==0}}<a class="weui-form-preview__btn weui-form-preview__btn_primary pay-btn" href="javascript:">支付</a><a class="weui-form-preview__btn weui-form-preview__btn_default cancel-btn" href="javascript:">取消</a>
+            {{else if list.status!=0&&list.status!=-1&&list.status!=1}}<a class="weui-form-preview__btn weui-form-preview__btn_default close-btn" href="javascript:">关闭</a> {{/if}}
+        </div>
+    </div>
+</li>
+{{/each}}

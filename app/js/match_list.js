@@ -1,5 +1,5 @@
 const template = require('../template/match_list.art')
-
+//#page height=100%
 $(document).ready(function($) {
     var page = 1;
     var size = 10;
