@@ -1,16 +1,16 @@
 <article class="weui-article">
-    <h1>大标题</h1>
+    <h1>{{index_title}}</h1>
     <section>
-        <h2 class="title">章标题</h2>
+        <h2 class="title">{{seo_title}}</h2>
         <section>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              {{description}}
             </p>
         </section>
 </article>
 <div class="weui-footer weui-footer_fixed-bottom">
     <p class="weui-footer__links">
-        <a href="http://jqweui.com" class="weui-footer__link">jQuery-WeUI 首页</a>
+        <a href="http://www.miitbeian.gov.cn" class="weui-footer__link">{{ICP}}</a>
     </p>
-    <p class="weui-footer__text">Copyright © 2016 jqweui.io</p>
+    <p class="weui-footer__text">{{copyright}}</p>
 </div>

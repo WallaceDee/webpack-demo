@@ -34,14 +34,15 @@
      }
 
 
-     var data = $._ajax({
+     var team = $._ajax({
          async: false,
          type: "get",
-         url: domain + "/api/v1/competition/by_member"
+         url: domain + "/api/v1/team/by_user"
      }).responseJSON;
-
-     console.log(template({ data }));
-     $("#page-player-data .content ul").html(template({ data }));
+     team.data = team;
+     team.type = 0;
+     console.log(template(team));
+     $("#page-player-data .content ul").html(template(team));
 
      var winH = $(window).height();
      var categorySpace = 10;
@@ -51,9 +52,22 @@
          var $this = $(this),
              $inner = $this.next('.js_categoryInner'),
              $page = $this.parents('#page-player-data'),
-             $parent = $(this).parent('li');
+             $parent = $(this).parent('li'),
+             curr_id = $this.data("id");
          var innerH = $inner.data('height');
-
+         
+         //请求一次后，防止多余请求
+         if ($this.attr("data-id") !== undefined) {
+             var competitions = $._ajax({
+                 async: false,
+                 type: "get",
+                 url: domain + "/api/v1/team/" + curr_id + "/competitions"
+             }).responseJSON;
+             competitions.data = competitions;
+             competitions.type = 1;
+             $this.next().find(".page__category-content").html(template(competitions));
+             $this.removeAttr("data-id");
+         }
 
          if (!innerH) {
              $inner.css('height', 'auto');
