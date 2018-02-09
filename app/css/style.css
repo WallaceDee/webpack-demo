@@ -18,6 +18,8 @@ body,
 html {
     height: 100%;
     -webkit-tap-highlight-color: transparent;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 ul,
@@ -43,71 +45,96 @@ li {
 }
 
 .icon-library-books:before {
-  content: "\e02f";
+    content: "\e02f";
 }
+
 .icon-play2:before {
-  content: "\e037";
+    content: "\e037";
 }
+
 .icon-play:before {
-  content: "\e038";
+    content: "\e038";
 }
+
 .icon-videocam:before {
-  content: "\e04b";
+    content: "\e04b";
 }
+
 .icon-subscriptions:before {
-  content: "\e064";
+    content: "\e064";
 }
+
 .icon-message:before {
-  content: "\e0c9";
+    content: "\e0c9";
 }
+
 .icon-keyboard:before {
-  content: "\e312";
+    content: "\e312";
 }
+
 .icon-mall2:before {
-  content: "\e54d";
+    content: "\e54d";
 }
+
 .icon-live-tv:before {
-  content: "\e639";
+    content: "\e639";
 }
+
 .icon-person-add:before {
-  content: "\e7fe";
+    content: "\e7fe";
 }
+
 .icon-emoji:before {
-  content: "\e815";
+    content: "\e815";
 }
+
 .icon-accessibility:before {
-  content: "\e84e";
+    content: "\e84e";
 }
+
 .icon-user:before {
-  content: "\e853";
+    content: "\e853";
 }
+
 .icon-announcement:before {
-  content: "\e85a";
+    content: "\e85a";
 }
+
 .icon-assignment:before {
-  content: "\e85d";
+    content: "\e85d";
 }
+
 .icon-user2:before {
-  content: "\e85e";
+    content: "\e85e";
 }
+
 .icon-settings:before {
-  content: "\e8b8";
+    content: "\e8b8";
 }
+
 .icon-vip2:before {
-  content: "\e901";
+    content: "\e901";
 }
+
 .icon-vip:before {
-  content: "\e902";
+    content: "\e902";
 }
+
 .icon-female:before {
-  content: "\f221";
+    content: "\f221";
 }
+
 .icon-male:before {
-  content: "\f222";
+    content: "\f222";
 }
+
 .icon-home:before {
-  content: "\e900";
+    content: "\e900";
 }
+
+
+
+
 
 
 
@@ -342,6 +369,10 @@ html.pixel-ratio-3 .card-footer:before {
 .card-footer.no-border:before {
     display: none;
 }
+
+
+
+
 
 
 
@@ -625,6 +656,10 @@ html.pixel-ratio-3 .card-footer:before {
         transform: translate3d(0, 0, 0);
     }
 }
+
+
+
+
 
 
 
@@ -1105,6 +1140,10 @@ html:not(.watch-active-state) .list-block .item-link:active .item-inner:after,
 
 
 
+
+
+
+
 /* === Content Block === */
 
 .content-block {
@@ -1236,6 +1275,99 @@ html:not(.watch-active-state) .list-block .item-link:active .item-inner:after,
     }
 }
 
+.weui-mark-rt {
+    border-radius: 2px;
+    top: 0;
+    color: #fff;
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    position: absolute;
+    right: 10px;
+    text-align: center;
+    width: 40px;
+}
+
+.weui-mark-rb {
+    border-radius: 2px;
+    bottom: 10px;
+    color: #fff;
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    position: absolute;
+    right: 10px;
+    text-align: center;
+    width: 40px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.weui-mark-lb {
+    border-radius: 2px;
+    bottom: 10px;
+    color: #fff;
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    position: absolute;
+    left: 0;
+    text-align: left;
+    width: 95%;
+    max-width: 99%;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.weui-mark-vip {
+    left: 0;
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+        height: 60px;
+    width: 90px;
+}
+
+.weui-mark-lt {
+    color: #fff;
+    display: block;
+    font-size: 12px!important;
+    left: -25px;
+    height: 15px;
+    line-height: 15px!important;
+    position: relative;
+    text-align: center;
+    top: 16px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    width: 100px;
+}
+
+.marker-live {
+    background-color: #317ef3;
+}
+
+.marker-live:after {
+    content: "LIVE"
+}
+
+.marker-playback {
+    background-color: #e64340;
+}
+
+.marker-playback:after {
+    content: "视频回放"
+}
+
+.marker-collection {
+    background-color: #FF6600;
+}
+
+.marker-collection:after {
+    content: "视频集锦"
+}
+
+
+
 
 
 
@@ -1248,7 +1380,13 @@ html:not(.watch-active-state) .list-block .item-link:active .item-inner:after,
 .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
     color: #317ef3;
 }
-
+#page-user-center{
+    height: 100%;
+    overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 53px;
+        box-sizing: border-box;
+}
 #page-user-center .header {
     position: relative;
 
@@ -1510,11 +1648,11 @@ i.icon-unknow {
 #page-live-center .weui-navbar+.weui-tab__bd {
     position: relative;
 
-    padding-bottom: 50px;
+    padding-bottom: 53px;
 }
 
 #page-live-center .weui-tab__bd-item {
-    bottom: 50px;
+    bottom: 53px;
 
     width: 100%;
     height: auto;
@@ -1541,6 +1679,10 @@ i.icon-unknow {
 #page-live-center .card-content {
     padding: 5px 15px;
 }
+
+
+
+
 
 
 
@@ -1692,6 +1834,10 @@ height: 100%;
 
 
 
+
+
+
+
 /*打开*/
 
 #page-live.opened-emoji-wrapper .emoji-wrapper {
@@ -1807,6 +1953,14 @@ img.emoji {
     -webkit-line-clamp: initial;
 }
 
+#page-vip .weui-grid {
+    background-color: #fff;
+}
+
+.weui-grids:before {
+    z-index: 1;
+}
+
 #page-vip .avatar {
     display: block;
     width: 60px;
@@ -1838,12 +1992,20 @@ img.emoji {
 
 
 
+
+
+
+
 /*****#page-user-info*****/
 
 #cutter-popup .img-container {
     width: 100%;
     height: 400px;
 }
+
+
+
+
 
 
 
@@ -1882,11 +2044,12 @@ img.emoji {
     height: 140px;
 }
 
-#page-history{
-        height: 100%;
+#page-history {
+    height: 100%;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
 }
+
 #page-history .weui-form-preview__value {
     font-size: 1em;
 }
@@ -2027,27 +2190,20 @@ img.emoji {
 
 #page-search {
     height: 100%;
-}
-#page-search .list-block ul{
-    height: 100%;
-    padding-top: 44px;
-    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+    overflow: auto;
 }
 
-#page-search .weui-search-bar {
+#page-search.list-block ul {
+   margin-top: 44px;
+}
+
+.weui-search-bar {
     position: absolute;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 500;
-}
-
-#page-search .content {
-    padding-top: 44px;
-    height: 100%;
-    box-sizing: border-box;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
 }
 
 #page-search .weui-media-box_appmsg .weui-media-box__hd {
@@ -2066,4 +2222,13 @@ img.emoji {
 
 #page-search .weui-media-box__info {
     margin-top: 5px;
+}
+
+#page-search .item-media span {
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-color: #eee;
+    background-size: cover;
+    background-position: center;
 }

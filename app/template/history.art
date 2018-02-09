@@ -26,17 +26,20 @@
             </div>
             <div class="weui-form-preview__item">
                 <label class="weui-form-preview__label">订单状态</label>
-                <span class="weui-form-preview__value">状态码{{list.status}}{{if list.status==0}}未支付{{else if list.status==1}}已完成{{else if list.status==-1}}已关闭{{else if list.status==5}}已取消{{/if}}</span>
+              <!--  状态码{{list.status}} -->
+                <span class="weui-form-preview__value">{{if list.status==0}}未支付{{else if list.status==1}}已完成{{else if list.status==-1}}已关闭{{else if list.status==5}}已取消{{/if}}</span>
             </div>
             <div class="weui-form-preview__item">
                 <label class="weui-form-preview__label">{{if list.status==1}}支付{{else}}下单{{/if}}时间</label>
                 <span class="weui-form-preview__value">{{if list.status==1}}{{list.pay_time}}{{else}}{{list.create_time}}{{/if}}</span>
             </div>
         </div>
+        {{if !(list.status==-1||list.status==1)}}
         <div class="weui-form-preview__ft">
             {{if list.status==0}}<a class="weui-form-preview__btn weui-form-preview__btn_primary pay-btn" href="javascript:">支付</a><a class="weui-form-preview__btn weui-form-preview__btn_default cancel-btn" href="javascript:">取消</a>
             {{else if list.status!=0&&list.status!=-1&&list.status!=1}}<a class="weui-form-preview__btn weui-form-preview__btn_default close-btn" href="javascript:">关闭</a> {{/if}}
         </div>
+        {{/if}}
     </div>
 </li>
 {{/each}}

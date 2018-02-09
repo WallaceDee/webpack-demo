@@ -1,4 +1,3 @@
-<div class="weui-cells__title">会员中心</div>
 <div class="weui-cells">
     <div class="weui-cell">
         <div class="weui-cell__hd"><span class="avatar" style="background-image: url({{head_img}});"></span></div>
@@ -9,9 +8,9 @@
         <div class="weui-cell__ft"><a class="pay-btn weui-btn weui-btn_mini weui-btn_primary" href="service_desc.html">{{member_status!==1?'立即开通':'立即续费'}}</a></div>
     </div>
 </div>
-<div class="weui-cells__title">我的会员特权</div>
+<div class="weui-cells__title">{{member_status!==1?'':'我的'}}会员特权</div>
 <div class="weui-grids">
-    <a href="player_info.html" class="weui-grid js_grid">
+    <a href="player_info.html" class="weui-grid">
         <div class="weui-grid__icon">
             <i class="icon-accessibility"></i>
         </div>
@@ -19,7 +18,7 @@
             球员信息
         </p>
     </a>
-    <a href="player_data.html" class="weui-grid js_grid">
+    <a href="player_data.html" class="weui-grid">
         <div class="weui-grid__icon">
             <i class="icon-library-books"></i>
         </div>
@@ -27,7 +26,7 @@
             数据分析
         </p>
     </a>
-    <a href="match_list.html" class="weui-grid js_grid">
+    <a href="match_list.html" class="weui-grid">
         <div class="weui-grid__icon">
             <i class="icon-person-add"></i>
         </div>

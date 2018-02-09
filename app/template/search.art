@@ -1,6 +1,7 @@
 {{each data list i}}
 <li>
-    <a href="match_detail.html?id={{list.id}}" class="item-link item-content">
+    <a href="{{if list.file===undefined}}live{{else}}videos{{/if}}.html?id={{list.id}}" class="item-link item-content">
+        <div class="weui-mark-vip"><span class="weui-mark-lt marker-{{if list.type==3}}live{{else if list.type==1}}playback{{else if list.type==2}}collection{{/if}}"></span></div>
         <div class="item-media"><span style="background-image: url({{list.main_img_url}});"></span></div>
         <div class="item-inner">
             <div class="item-title-row">

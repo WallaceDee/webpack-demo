@@ -76,9 +76,7 @@ $(document).ready(function($) {
                     success: function(res) {
                         console.log(res);
                         $.toast("支付成功", function() {
-                            setTimeout(function() {
                                 window.location.href = "user_center.html"
-                            }, 3000)
                         });
                     }
                 });

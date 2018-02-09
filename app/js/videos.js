@@ -12,6 +12,7 @@ $(document).ready(function() {
         url: domain + "/api/v1/competitionvideo/" + curr_id
     }).responseJSON;
     console.log(data);
+    var curr_type = data.type == 3 ? 2 : 1;
     $("#page-videos").html(template(data));
 
 
@@ -23,4 +24,16 @@ $(document).ready(function() {
             children: ["playToggle", "progressControl", "liveDisplay", "fullscreenToggle"]
         }
     });
+
+    player.on("firstplay", function(e) {
+        console.log(e);
+        $._ajax({
+            url: domain + "/api/v1/competition/play_notify",
+            data: {
+                id: curr_id,
+                type: curr_type
+            }
+        });
+    });
+
 });

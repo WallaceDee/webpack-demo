@@ -12,3 +12,4 @@
         <p class="weui-media-box__desc">{{@summary}}</p>
     </div>
 </div>
+<script>document.title = "{{type==1?"视频回放":"精彩集锦"}}-{{title}}"</script>

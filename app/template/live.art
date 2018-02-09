@@ -37,3 +37,4 @@
         </div>
     </div>
 </div>
+<script>document.title = "直播-{{title}}"</script>
