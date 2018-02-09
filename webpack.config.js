@@ -16,7 +16,8 @@ var config = {
         path: path.join(__dirname, './dist'),
         filename: 'js/[name].bundle.js',
     },
-    devtool: 'source-map',
+    // devtool: 'source-map',
+    devtool: 'cheap-module-source-map',
     devServer: {
         contentBase: "./dist", //本地服务器所加载的页面所在的目录
         historyApiFallback: true, //不跳转
@@ -74,12 +75,12 @@ var config = {
     },
     externals: {
         'jquery': 'window.jQuery',
-        'runtime':'window.runtime'
+        'runtime': 'window.runtime'
     },
     plugins: [
         new vConsolePlugin({
             filter: [], // 需要过滤的入口文件
-            enable: true// 发布代码前记得改回 false
+            enable: true // 发布代码前记得改回 false
         }),
         // new webpack.ProvidePlugin({
         //     videojs: 'video.js'
