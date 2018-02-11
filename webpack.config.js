@@ -33,7 +33,7 @@ var config = {
     },
     module: {
         rules: [{
-                test: /.art$/,
+                test: /(\.art|\.html)$/,
                 use: ['art-template-loader']
             }, {
                 test: /(\.jsx|\.js)$/,
