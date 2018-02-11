@@ -2,12 +2,12 @@
     <div class="content">
         <img src="{{main_img_url}}" alt="">
         <div class="weui-cells">
-            <div class="weui-cell">
+<!--             <div class="weui-cell">
                 <div class="weui-cell__bd">
                     <p>比赛队伍</p>
                 </div>
                 <div class="weui-cell__ft">{{title}}</div>
-            </div>
+            </div> -->
             <div class="weui-cell">
                 <div class="weui-cell__bd">
                     <p>比赛时间</p>
@@ -19,18 +19,18 @@
                 <p class="weui-media-box__desc">{{summary}}</p>
             </div>
         </div>
-        <article class="weui-article">
+<!--         <article class="weui-article">
             <h1>比赛详情</h1>
             <section>
                 {{@description}}
             </section>
             </section>
-        </article>
+        </article> -->
     </div>
 </div>
 <div class="weui-tabbar">
     <a href="javascript:;" class="weui-btn weui-btn_primary">报名</a>
 </div>
 <script>
-    document.title="{{title}}";
+    document.title="赛事报名-{{title}}";
 </script>

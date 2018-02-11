@@ -29,6 +29,7 @@ $(document).ready(function() {
                     },
                     success: function(data) {
                         if (data.error_code === 0) {
+                             $.toast("修改成功");
                             $("#page-user-info .name-cell .weui-cell__ft").html(value);
                         }
                     }
@@ -72,18 +73,21 @@ $(document).ready(function() {
     });
     $(document).on("click", "#cutter-popup .weui-btn_primary", function() {
         var src_data = $("#crop-image").cropper("getCroppedCanvas", {
-            width: 200,
-            height: 200
+            width: 100,
+            height: 100
         }).toDataURL('image/jpeg');;
         $._ajax({
             url: domain + "/api/v1/user/save",
             data: {
-                head_img: src_data.replace("data:image/jpeg;base64,","")
+                head_img: src_data.replace("data:image/jpeg;base64,", "")
             },
             success: function(data) {
                 if (data.error_code === 0) {
-                    $(".page-user-info .avatar-cell .weui-cell__ft span").css("background-image", "url(" + src_data + ")");
-                    $.closePopup();
+                      $.toast("修改成功",function(){
+                          $.closePopup();
+                           $("#page-user-info .avatar-cell .weui-cell__ft span").css("background-image", "url(" + src_data + ")");
+                      });
+                  
                 }
             }
         });

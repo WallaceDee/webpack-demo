@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh">
-
-<head>
-    <title>赛事中心</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-</head>
-
-<body>
+<%include('../template/head.art',{title:"赛事中心"})%>
     <div id="page-live-center">
         <div class="weui-search-bar" id="searchBar">
             <form class="weui-search-bar__form" action="">
@@ -32,69 +22,30 @@
             </div>
             <div class="weui-tab__bd">
                 <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active" data-url="/api/v1/competition/live">
-                    <div class="weui-pull-to-refresh__layer">
-                        <div class="weui-pull-to-refresh__arrow"></div>
-                        <div class="weui-pull-to-refresh__preloader"></div>
-                        <div class="down">下拉刷新</div>
-                        <div class="up">释放刷新</div>
-                        <div class="refresh">正在刷新</div>
-                    </div>
-                    <div class="cards-list content">
-                        <ul>
-                        </ul>
-                    </div>
-                    <div class="weui-loadmore">
-                        <i class="weui-loading"></i>
-                        <span class="weui-loadmore__tips">正在加载</span>
-                    </div>
+                    <%include('../template/refresher.art')%>
+                        <div class="cards-list content">
+                            <ul>
+                            </ul>
+                        </div>
+                        <%include('../template/loader.art')%>
                 </div>
                 <div id="tab2" class="weui-tab__bd-item" data-url="/api/v1/competition/video" data-type="1">
-                    <div class="weui-pull-to-refresh__layer">
-                        <div class="weui-pull-to-refresh__arrow"></div>
-                        <div class="weui-pull-to-refresh__preloader"></div>
-                        <div class="down">下拉刷新</div>
-                        <div class="up">释放刷新</div>
-                        <div class="refresh">正在刷新</div>
-                    </div>
-                    <div class="cards-list content">
-                        <ul>
-                        </ul>
-                    </div>
-                    <div class="weui-loadmore">
-                        <i class="weui-loading"></i>
-                        <span class="weui-loadmore__tips">正在加载</span>
-                    </div>
+                    <%include('../template/refresher.art')%>
+                        <div class="cards-list content">
+                            <ul>
+                            </ul>
+                        </div>
+                        <%include('../template/loader.art')%>
                 </div>
                 <div id="tab3" class="weui-tab__bd-item" data-url="/api/v1/competition/video" data-type="2">
-                    <div class="weui-pull-to-refresh__layer">
-                        <div class="weui-pull-to-refresh__arrow"></div>
-                        <div class="weui-pull-to-refresh__preloader"></div>
-                        <div class="down">下拉刷新</div>
-                        <div class="up">释放刷新</div>
-                        <div class="refresh">正在刷新</div>
-                    </div>
-                    <div class="cards-list content">
-                        <ul>
-                        </ul>
-                    </div>
-                    <div class="weui-loadmore">
-                        <i class="weui-loading"></i>
-                        <span class="weui-loadmore__tips">正在加载</span>
-                    </div>
+                    <%include('../template/refresher.art')%>
+                        <div class="cards-list content">
+                            <ul>
+                            </ul>
+                        </div>
+                        <%include('../template/loader.art')%>
                 </div>
             </div>
         </div>
-        <div class="weui-tabbar">
-            <a href="live_center.html" class="weui-tabbar__item weui-bar__item_on">
-                      <i class="icon-play weui-tabbar__icon"></i>
-                    <p class="weui-tabbar__label">赛事中心</p>
-                </a>
-            <a href="user_center.html" class="weui-tabbar__item">
-                <i class="icon-user weui-tabbar__icon"></i>
-                    <p class="weui-tabbar__label">个人中心</p>
-                </a>
-        </div>
     </div>
-</body>
-
-</html>
+    <%include('../template/tabbar.art',{active:"live_center"})%>

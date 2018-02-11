@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh">
-
-<head>
-    <title>个人中心</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-</head>
-
-<body>
+<%include('../template/head.art',{title:"个人中心"})%>
     <div id="page-user-center">
     </div>
-    <div class="weui-tabbar">
-        <a href="live_center.html" class="weui-tabbar__item">
-                      <i class="icon-play weui-tabbar__icon"></i>
-                    <p class="weui-tabbar__label">赛事中心</p>
-                </a>
-        <a href="user_center.html" class="weui-tabbar__item weui-bar__item_on">
-                <i class="icon-user weui-tabbar__icon"></i>
-                    <p class="weui-tabbar__label">个人中心</p>
-                </a>
-    </div>
-</body>
-
-</html>
+    <%include('../template/tabbar.art',{active:"user_center"})%>

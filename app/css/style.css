@@ -1544,7 +1544,11 @@ i.icon-unknow {
     vertical-align: text-bottom;
 }
 
-
+#page-user-info{
+    height: 100%;
+    overflow: auto;
+     -webkit-overflow-scrolling: touch;
+}
 
 #page-user-info [name='uploadAvatar'] {
     position: absolute;
@@ -2133,15 +2137,17 @@ img.emoji {
 
 
 #page-player-data {
-    overflow: hidden;
+    overflow: auto;
     height: 100%;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 15px;
 }
 
 #page-player-data .content {
     padding: 0 15px;
 }
 
-#page-player-data .content li {
+#page-player-data  li {
     margin: 10px 0;
     background-color: #fff;
     overflow: hidden;
@@ -2149,7 +2155,7 @@ img.emoji {
     cursor: pointer;
 }
 
-#page-player-data .content .weui-flex {
+#page-player-data .weui-flex {
     padding: 20px;
     -webkit-box-align: center;
     -webkit-align-items: center;
@@ -2158,26 +2164,26 @@ img.emoji {
     transition: .3s;
 }
 
-#page-player-data .content .weui-flex img {
+#page-player-data  .weui-flex img {
     width: 30px;
     height: 30px;
 }
 
-#page-player-data .content li.js_show .weui-flex {
+#page-player-data  li.js_show .weui-flex {
     opacity: .4;
 }
 
-#page-player-data .content .page__category {
+#page-player-data  .page__category {
     height: 0;
     overflow: hidden;
 }
 
-#page-player-data .content .page__category {
+#page-player-data  .page__category {
     height: 0;
     overflow: hidden;
 }
 
-#page-player-data .content li.js_show .page__category {
+#page-player-data  li.js_show .page__category {
     height: auto;
 }
 

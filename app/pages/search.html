@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh">
-
-<head>
-    <title>搜索结果</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-</head>
-
-<body>
+<%include('../template/head.art',{title:"搜索结果"})%>
     <div class="weui-search-bar" id="searchBar">
         <form class="weui-search-bar__form" action="">
             <div class="weui-search-bar__box">
@@ -25,11 +15,5 @@
     </div>
     <div id="page-search" class="list-block media-list">
         <ul></ul>
-        <div class="weui-loadmore">
-            <i class="weui-loading"></i>
-            <span class="weui-loadmore__tips">正在加载</span>
-        </div>
+        <%include('../template/loader.art')%>
     </div>
-</body>
-
-</html>

@@ -24,8 +24,9 @@ $(document).ready(function() {
                 success: function(data) {
                     console.log(data);
                     if (data.error_code === 0) {
-                        $.toast("提交成功");
-                        setTimeout(function() { history.back(); }, 3000);
+                        $.toast("提交成功",function(){
+                            history.back(); 
+                        });
                     }
                 }
             });

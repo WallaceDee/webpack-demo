@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh">
-
-<head>
-    <title>意见反馈</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-</head>
-
-<body>
+<%include('../template/head.art',{title:"意见反馈"})%>
     <div id="page-suggestion">
         <div class="weui-cells__title">反馈类型</div>
         <div class="weui-cells weui-cells_radio">
@@ -26,7 +16,7 @@
                     <p>投诉</p>
                 </div>
                 <div class="weui-cell__ft">
-                    <input type="radio" name="type" class="weui-check" id="x12"  value="2">
+                    <input type="radio" name="type" class="weui-check" id="x12" value="2">
                     <span class="weui-icon-checked"></span>
                 </div>
             </label>
@@ -35,7 +25,7 @@
                     <p>其它</p>
                 </div>
                 <div class="weui-cell__ft">
-                    <input type="radio" name="type" class="weui-check" id="x13"  value="3">
+                    <input type="radio" name="type" class="weui-check" id="x13" value="3">
                     <span class="weui-icon-checked"></span>
                 </div>
             </label>
@@ -56,7 +46,7 @@
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__bd">
-                    <textarea class="weui-textarea" name="content" placeholder="请输入您的建议" rows="3" required emptyTips="请输入您的建议" pattern="^\S{10,200}$" notMatchTips="请输入10到200字的反馈。" ></textarea>
+                    <textarea class="weui-textarea" name="content" placeholder="请输入您的建议" rows="3" required emptyTips="请输入您的建议" pattern="^\S{10,200}$" notMatchTips="请输入10到200字的反馈。"></textarea>
                     <div class="weui-textarea-counter"><span>0</span>/200</div>
                 </div>
             </div>
@@ -65,6 +55,3 @@
             <a class="weui-btn weui-btn_primary" href="javascript:">确定</a>
         </div>
     </div>
-</body>
-
-</html>

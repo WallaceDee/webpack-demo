@@ -42,7 +42,7 @@
      team.data = team;
      team.type = 0;
      console.log(template(team));
-     $("#page-player-data .content ul").html(template(team));
+     $("#page-player-data>ul").html(template(team));
 
      var winH = $(window).height();
      var categorySpace = 10;
