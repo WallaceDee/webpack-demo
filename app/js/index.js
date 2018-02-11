@@ -1,3 +1,4 @@
+const template = require('../template/index.art')
 $(document).ready(function($) {
     var webInfo = {};
     webInfo = $._ajax({

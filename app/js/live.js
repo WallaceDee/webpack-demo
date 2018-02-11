@@ -60,6 +60,13 @@ $(document).ready(function() {
                 if (received_data.room_id === curr_room) {
                     $("#page-live .messages-auto-layout").append(msg_template(received_data));
                     $("#page-live .messages-wrapper").finish().animate({ "scrollTop": $('#page-live .messages-wrapper')[0].scrollHeight }, 1000);
+                   var $temp= $("#page-live .messages-wrapper .message-appear-from-bottom");
+                    setTimeout(function(){
+                        $temp.removeClass("message-appear-from-bottom");
+                    },1000);    
+                     if($("#page-live .messages-auto-layout").children().length>200){
+                        $("#page-live .messages-auto-layout").children().eq(0).remove();
+                     }           
                 } else {
                     //不是当前房间号的对话
                 }
