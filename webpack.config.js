@@ -6,7 +6,7 @@ var entries = getEntry('./app/js/**/*.js'); // 获得入口js文件
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var vConsolePlugin = require('vconsole-webpack-plugin');
-var insertScriptTag = require('./webpack_plugin/insert-script-tag/insertScriptTag.js');
+var insertTag = require('./webpack_plugin/insertTag.js');
 
 
 var config = {
@@ -80,7 +80,7 @@ var config = {
     plugins: [
         new vConsolePlugin({
             filter: [], // 需要过滤的入口文件
-            enable: true // 发布代码前记得改回 false
+            enable: false // 发布代码前记得改回 false
         }),
         // new webpack.ProvidePlugin({
         //     videojs: 'video.js'
@@ -99,9 +99,17 @@ var config = {
             from: "./app/images/emoji",
             to: "./images/emoji",
             force: true
+        }]), new CopyWebpackPlugin([{
+            from: "./app/css/",
+            to: "./css/",
+            force: true
+        }]),new CopyWebpackPlugin([{
+            from: "./app/fonts/",
+            to: "./fonts/",
+            force: true
         }]),
-        new insertScriptTag({
-            paths: ["js/jquery-2.1.4.js", "http://res.wx.qq.com/open/js/jweixin-1.2.0.js"]
+        new insertTag({
+            paths: ["css/weui.min.css", "css/jquery-weui.min.css", "css/style.css", "js/jquery-2.1.4.js", "http://res.wx.qq.com/open/js/jweixin-1.2.0.js"]
         })
     ]
 }
@@ -119,11 +127,11 @@ function getEntry(globPath) {
 }
 console.log("dev pages----------------------");
 
-function copyHtmlToDist() {
+;(function copyHtmlToDist() {
     var pages = getEntry('./app/pages/**/*.html');
     for (var basename in pages) {
-        console.log("filename:" + basename + '.html');
-        console.log("template:" + pages[basename]);
+        //console.log("filename:" + basename + '.html');
+        //console.log("template:" + pages[basename]);
         // 配置生成的html文件，定义路径等
         var conf = {
             filename: '../dist/' + basename + '.html',
@@ -131,12 +139,12 @@ function copyHtmlToDist() {
             minify: { //传递 html-minifier 选项给 minify 输出
                 removeComments: true
             },
-            inject: 'head', // js插入位置
+            inject: 'foot', // js插入位置
             chunks: [basename, "vendor"] // 每个html引用的js模块，也可以在这里加上vendor等公用模块
         };
         // 需要生成几个html文件，就配置几个HtmlWebpackPlugin对象
         config.plugins.push(new HtmlWebpackPlugin(conf));
     }
-}
-copyHtmlToDist();
+})();
+
 module.exports = config
