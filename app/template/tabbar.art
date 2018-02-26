@@ -1,9 +1,9 @@
 <div class="weui-tabbar">
-    <a href="live_center.html" class="weui-tabbar__item {{active==="live_center"?"weui-bar__item_on":""}}">
+    <a {{active==="live_center"?"":"href=live_center.html" }} class="weui-tabbar__item {{active==="live_center"?"weui-bar__item_on":""}}">
         <i class="icon-play weui-tabbar__icon"></i>
         <p class="weui-tabbar__label">赛事中心</p>
     </a>
-    <a href="user_center.html" class="weui-tabbar__item {{active==="user_center"?"weui-bar__item_on":""}}">
+    <a {{active==="user_center"?"":"href=user_center.html" }} class="weui-tabbar__item {{active==="user_center"?"weui-bar__item_on":""}}">
         <i class="icon-user weui-tabbar__icon"></i>
         <p class="weui-tabbar__label">个人中心</p>
     </a>

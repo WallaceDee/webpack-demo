@@ -80,7 +80,7 @@ var config = {
     plugins: [
         new vConsolePlugin({
             filter: [], // 需要过滤的入口文件
-            enable: false // 发布代码前记得改回 false
+            enable: true // 发布代码前记得改回 false
         }),
         // new webpack.ProvidePlugin({
         //     videojs: 'video.js'

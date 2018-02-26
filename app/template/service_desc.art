@@ -1,8 +1,15 @@
 <div class="weui-tab__bd">
-    <div class="content"> {{@content}}</div>
+    <div class="content">{{@content}}
+        <div class="weui-agree">
+            <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" checked="checked">
+            <span class="weui-agree__text">
+       已阅读并同意<a href="protocol.html?type=1">《建东体育服务协议》</a>及<a href="protocol.html?type=2">《视频购买观看协议》</a>及<a href="protocol.html?type=3">《英东体育尊享会员服务协议》</a>且知晓因版权问题，仅限大陆地区观看。
+      </span>
+        </div>
+    </div>
 </div>
 <div class="weui-tabbar">
-    <a href="javascript:;" class="weui-btn weui-btn_primary">支付开通</a>
+    <a href="javascript:;" class="weui-btn weui-btn_primary">{{is_member===true?"续费":"加入会员"}}</a>
 </div>
 <script>
 document.title = "{{title}}"
