@@ -1,6 +1,34 @@
 const template = require('../template/match_detail.art')
 
 $(document).ready(function($) {
+
+    if (!is_member) {
+        $.modal({
+            text: "您目前还不是建东会员，无法报名参赛！",
+            buttons: [{
+                    text: "去开通",
+                    onClick: function() {
+                        location.href = "vip.html";
+                    }
+                },
+                {
+                    text: "绑定手机",
+                    onClick: function() {
+                        location.href = "bind.html";
+                    }
+                },
+                {
+                    text: "返回",
+                    onClick: function() {
+                        history.back();
+                    }
+                }
+            ]
+        });
+        return false;
+    }
+
+
     var curr_id = $.getParameter("id");
     $._ajax({
         type: "get",

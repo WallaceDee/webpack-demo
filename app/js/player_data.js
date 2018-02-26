@@ -1,12 +1,6 @@
  const template = require('../template/player_data.art')
 
  $(document).ready(function($) {
-     var is_member = $._ajax({
-         async: false,
-         type: "get",
-         url: domain + "/api/v1/user/info"
-     }).responseJSON.member_status === 1;
-
      if (!is_member) {
          $.modal({
              text: "您目前还不是建东会员，暂无球员数据分析",
