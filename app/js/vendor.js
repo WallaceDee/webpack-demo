@@ -153,7 +153,35 @@ Date.prototype.format = function(fmt) {
             localStorage.setItem(name, JSON.stringify(object));
         }
     }
-
+    /**
+     * 设置cookie
+     * @param {[type]} key   [键名]
+     * @param {[type]} value [键值]
+     * @param {[type]} ms  [保存的时间（天）]
+     */
+    $.setCookie = function(key, value, es) {
+        // 设置过期原则
+        if (!value) {
+            localStorage.removeItem(key);
+        } else {
+            var expires = es || 7 * 24 * 60 * 60 * 1000; // 默认保留7天
+            var exp = new Date();
+            localStorage.setItem(key, JSON.stringify({ value, expires: exp.getTime() + expires,createtime:exp.getTime() }));
+        }
+    }
+    $.getCookie = function(name) {
+        if (localStorage.getItem(name) !== null) {
+            var o = JSON.parse(localStorage.getItem(name));
+            if (!o || o.expires < Date.now()) {
+                localStorage.removeItem(name);
+                return null;
+            } else {
+                return o.value;
+            }
+        } else {
+            return null;
+        }
+    }
     $.getParameter = function(key) {
         var url = window.location.search;
         var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
