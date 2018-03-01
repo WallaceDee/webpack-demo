@@ -3,13 +3,13 @@
     <div class="weui-cells">
         <div class="weui-cell">
             <div class="weui-cell__bd">
-                <p>比赛队伍</p>
+                <p>队伍</p>
             </div>
             <div class="weui-cell__ft">{{title}}</div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__bd">
-                <p>比赛比分</p>
+                <p>比分</p>
             </div>
             <div class="weui-cell__ft">{{score}}</div>
         </div>
@@ -25,7 +25,7 @@
         </div>
     </div>
     <article class="weui-article">
-        <h1>比赛详情</h1>
+        <h1>比赛报告</h1>
         <section>
             {{@description}}
         </section>

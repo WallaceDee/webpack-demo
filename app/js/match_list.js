@@ -51,4 +51,31 @@ $(document).ready(function($) {
     }
 
 
+$("#page-match-list").on('click', '.weui-btn_primary', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    console.log(1);
+    var $curr=$(this).parents("a.item-content");
+    var curr_title=$curr.find('.item-title').text();
+    var curr_id=$curr.find('button').data("id");
+     $.confirm("您确定要报名参加 "+curr_title+" 这个赛事吗?", function() {
+            $._ajax({
+                url: domain + "/api/v1/competition/apply",
+                data: {
+                    id: curr_id
+                },
+                success: function(data) {
+                    if (data.error_code === 0) {
+                        $.toast("报名成功", function() {
+                            console.log('报名成功');
+                        });
+                    }
+                }
+            });
+        }, function() {
+            //取消操作
+        });
+});
+
+       
 });

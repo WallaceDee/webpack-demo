@@ -6,33 +6,39 @@
     <div class="name">{{username}}<a class="vip{{member_status===1?' on':''}}" href="vip.html"><i class="icon-vip"></i></a>
     </div>
 </div>
-<div class="weui-cells">
-    <a class="weui-cell weui-cell_access" href="vip.html">
-        <div class="weui-cell__bd">
-            <p><i class="icon-vip2"></i>会员中心</p>
-        </div>
-        <div class="weui-cell__ft">
-        </div>
-    </a>
-    <a class="weui-cell weui-cell_access" href="user_info.html">
-        <div class="weui-cell__bd">
-            <p><i class="icon-user2"></i>个人信息</p>
-        </div>
-        <div class="weui-cell__ft">
-        </div>
-    </a>
-    <a class="weui-cell weui-cell_access" href="history.html">
-        <div class="weui-cell__bd">
-            <p><i class="icon-assignment"></i>购买记录</p>
-        </div>
-        <div class="weui-cell__ft">
-        </div>
-    </a>
-    <a class="weui-cell weui-cell_access" href="suggestion.html">
-        <div class="weui-cell__bd">
-            <p><i class="icon-announcement"></i>意见反馈</p>
-        </div>
-        <div class="weui-cell__ft">
-        </div>
-    </a>
+<div class="list-block">
+    <ul>
+        <li>
+            <a class="item-link item-content" href="vip.html">
+                <div class="item-media"><i class="icon-vip2"></i></div>
+                <div class="item-inner">
+                    <div class="item-title">会员中心</div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a class="item-link item-content" href="user_info.html">
+                <div class="item-media"><i class="icon-user2"></i></div>
+                <div class="item-inner">
+                    <div class="item-title">个人信息</div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a class="item-link item-content" href="history.html">
+                <div class="item-media"><i class="icon-assignment"></i></div>
+                <div class="item-inner">
+                    <div class="item-title">购买记录</div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a class="item-link item-content" href="suggestion.html">
+                <div class="item-media"><i class="icon-announcement"></i></div>
+                <div class="item-inner">
+                    <div class="item-title">意见反馈</div>
+                </div>
+            </a>
+        </li>
+    </ul>
 </div>

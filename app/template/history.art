@@ -3,7 +3,7 @@
     <div class="weui-form-preview" data-id="{{list.id}}">
         <div class="weui-form-preview__hd">
             <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">商品/服务名称</label>
+                <label class="weui-form-preview__label">商品/服务</label>
                 <em class="weui-form-preview__value">{{list.name}}</em>
             </div>
         </div>
@@ -12,20 +12,20 @@
                 <label class="weui-form-preview__label">订单号</label>
                 <span class="weui-form-preview__value">{{list.order_no}}</span>
             </div>
-            <div class="weui-form-preview__item">
+<!--             <div class="weui-form-preview__item">
                 <label class="weui-form-preview__label">价格</label>
                 <span class="weui-form-preview__value">￥{{list.price}}</span>
             </div>
             <div class="weui-form-preview__item">
                 <label class="weui-form-preview__label">数量</label>
                 <span class="weui-form-preview__value">{{list.count}}</span>
-            </div>
+            </div> -->
             <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">总计</label>
+                <label class="weui-form-preview__label">支付金额</label>
                 <span class="weui-form-preview__value">￥{{list.total_price}}</span>
             </div>
             <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">订单状态</label>
+                <label class="weui-form-preview__label">状态</label>
               <!--  状态码{{list.status}} -->
                 <span class="weui-form-preview__value">{{if list.status==0}}未支付{{else if list.status==1}}已完成{{else if list.status==-1}}已关闭{{else if list.status==5}}已取消{{/if}}</span>
             </div>

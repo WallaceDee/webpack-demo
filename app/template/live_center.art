@@ -1,5 +1,5 @@
 {{each data list i}}
-<li class="card">
+<li class="card" onclick="if(device.android)$.showLoading();">
     <a data-href="{{if list.file===undefined}}live{{else}}videos{{/if}}.html?id={{list.id}}">
     <span class="surface" style="background-image: url({{list.main_img_url}})"></span>
     <div class="card-content">
@@ -9,7 +9,6 @@
 	<ul class="weui-media-box__info">
             <li class="weui-media-box__info__meta"><i class="icon-play2"></i>{{list.browse_num}}</li>
         </ul> {{/if}}
-       
     </div>
 </a>
 </li>
