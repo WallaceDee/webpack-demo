@@ -211,6 +211,7 @@ Date.prototype.format = function(fmt) {
             data: opt.data,
             dataType: opt.dataType,
             async: opt.async,
+			cache:false,
             beforeSend: function() {
                 if (opt.showLoader) {
                     $.showLoading();
@@ -295,6 +296,21 @@ window.is_member = $._ajax({
     type: "get",
     url: domain + "/api/v1/user/info"
 }).responseJSON.member_status === 1;
+
+$("body").append('<div class="actGotop"><a href="javascript:;" title="返回顶部"><i class="icon-top"></i></a></div>');
+
+$("#page-live-center .weui-tab__bd-item").scroll(function() {		
+		if($(this).scrollTop() >= 100){
+			$('.actGotop').fadeIn(300); 
+		}else{    
+			$('.actGotop').fadeOut(300);    
+		}  
+	});
+	$('.actGotop').click(function(){
+	$("#page-live-center .weui-tab__bd-item").animate({scrollTop: '0px'}, 800);});	
+
+
+
 
 $._ajax({
     url: domain + "/api/v1/wxconfig",
