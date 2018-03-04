@@ -1,6 +1,7 @@
 {{each data list i}}
 <li>
-    <a href="match_detail.html?id={{list.id}}" class="item-link item-content">
+ <!--    <a href="match_detail.html?id={{list.id}}" class="item-link item-content"> -->
+       <a  class="item-content">
         <div class="item-media"><span style="background-image: url({{list.main_img_url}});"></span></div>
         <div class="item-inner">
             <div class="item-title-row">
@@ -9,7 +10,9 @@
             <div class="item-subtitle">时间:{{list.play_time}}</div>
             <div class="item-text">{{list.summary}}</div>
         </div>
-        <div class="item-inner"><button data-id="{{list.id}}" class="weui-btn weui-btn_mini weui-btn_primary">报名</button></div>
+        <div class="item-inner">
+          <button data-id="{{list.id}}" class="weui-btn weui-btn_mini weui-btn_primary {{if list.apply_status===1}}weui-btn_disabled{{/if}}">{{if list.apply_status===1}}取消{{else}}报名{{/if}}</button> 
+        </div>
     </a>
 </li>
 {{/each}}

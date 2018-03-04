@@ -32,10 +32,14 @@ li {
 }
 
 .weui-btn_primary {
+    border-radius: 0!important;
     background-color: #317ef3;
 }
 .weui-btn_primary:not(.weui-btn_disabled):active {
     color: hsla(0,0%,100%,.6);
+    background-color: #2a67c3;
+}
+.weui-btn_disabled.weui-btn_primary{
     background-color: #2a67c3;
 }
 [class^='icon-'],
@@ -2204,6 +2208,7 @@ img.emoji {
 
 #page-player-info .weui-media-box__desc {
     -webkit-line-clamp: initial;
+        text-indent: 26px;
 }
 
 #page-player-info .weui-media-box_appmsg .weui-media-box__hd {
@@ -2298,7 +2303,8 @@ img.emoji {
 }
 
 #page-match-list .item-inner:nth-child(3) {
-    width: 160px;
+    width: 170px;
+    position: relative;
 }
 
 #page-match-list .item-inner button {
@@ -2306,6 +2312,7 @@ img.emoji {
     transform: translateY(-50%);
     position: relative;
     height: 30px;
+    position: absolute;
 }
 
 

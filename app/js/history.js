@@ -94,7 +94,8 @@ $(document).ready(function($) {
             data: { id: curr_id },
             success: function(data) {
                 console.log(data);
-                $.toast("取消成功");
+                $.toast("取消成功",function(){      window.location.reload();});
+          
             }
         });
 
@@ -108,7 +109,7 @@ $(document).ready(function($) {
             data: { id: curr_id },
             success: function(data) {
                 console.log(data);
-                  $.toast("关闭成功");
+                  $.toast("关闭成功",function(){      window.location.reload();});
             }
         });
 

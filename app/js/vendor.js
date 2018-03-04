@@ -166,7 +166,7 @@ Date.prototype.format = function(fmt) {
         } else {
             var expires = es || 7 * 24 * 60 * 60 * 1000; // 默认保留7天
             var exp = new Date();
-            localStorage.setItem(key, JSON.stringify({ value, expires: exp.getTime() + expires,createtime:exp.getTime() }));
+            localStorage.setItem(key, JSON.stringify({ value, expires: exp.getTime() + expires, createtime: exp.getTime() }));
         }
     }
     $.getCookie = function(name) {
@@ -211,7 +211,7 @@ Date.prototype.format = function(fmt) {
             data: opt.data,
             dataType: opt.dataType,
             async: opt.async,
-			cache:false,
+            cache: false,
             beforeSend: function() {
                 if (opt.showLoader) {
                     $.showLoading();
@@ -230,13 +230,17 @@ Date.prototype.format = function(fmt) {
                 var data = XMLHttpRequest.responseJSON;
                 var error_code = data.error_code;
                 var msg = data.msg;
+
                 //token过期
                 if (XMLHttpRequest.status === 401) {
                     if (error_code === 10003) {
                         $.setCache("token", null);
                         window.location.href = get_code_url;
                     }
+                    if ($("#page-bind").length === 1) {
+                        $.toptip(msg, "error");
 
+                    }
 
                 }
                 //
@@ -252,6 +256,7 @@ Date.prototype.format = function(fmt) {
                     }
                 }
                 console.error(XMLHttpRequest.status + "-" + XMLHttpRequest.readyState + "-" + textStatus + "-" + errorThrown);
+                console.error(JSON.stringify(XMLHttpRequest.responseText));
             }
         });
     }
@@ -299,15 +304,16 @@ window.is_member = $._ajax({
 
 $("body").append('<div class="actGotop"><a href="javascript:;" title="返回顶部"><i class="icon-top"></i></a></div>');
 
-$("#page-live-center .weui-tab__bd-item").scroll(function() {		
-		if($(this).scrollTop() >= 100){
-			$('.actGotop').fadeIn(300); 
-		}else{    
-			$('.actGotop').fadeOut(300);    
-		}  
-	});
-	$('.actGotop').click(function(){
-	$("#page-live-center .weui-tab__bd-item").animate({scrollTop: '0px'}, 800);});	
+$("#page-live-center .weui-tab__bd-item").scroll(function() {
+    if ($(this).scrollTop() >= 100) {
+        $('.actGotop').fadeIn(300);
+    } else {
+        $('.actGotop').fadeOut(300);
+    }
+});
+$('.actGotop').click(function() {
+    $("#page-live-center .weui-tab__bd-item").animate({ scrollTop: '0px' }, 800);
+});
 
 
 

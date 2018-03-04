@@ -54,19 +54,21 @@ $(document).ready(function($) {
 $("#page-match-list").on('click', '.weui-btn_primary', function(event) {
     event.preventDefault();
     /* Act on the event */
-    console.log(1);
-    var $curr=$(this).parents("a.item-content");
+        var $curr=$(this).parents("a.item-content");
     var curr_title=$curr.find('.item-title').text();
     var curr_id=$curr.find('button').data("id");
-     $.confirm("您确定要报名参加 "+curr_title+" 这个赛事吗?", function() {
+    var $btn=$(this);
+if(!$btn.hasClass("weui-btn_disabled")){
+ $.confirm("您确定要报名参加 "+curr_title+" 这个赛事吗?", function() {
             $._ajax({
-                url: domain + "/api/v1/competition/apply",
+                url: domain + "/api/v1/competition/apply/commit",
                 data: {
                     id: curr_id
                 },
                 success: function(data) {
                     if (data.error_code === 0) {
                         $.toast("报名成功", function() {
+                             $btn.html("已报名").addClass("weui-btn_disabled");
                             console.log('报名成功');
                         });
                     }
@@ -75,6 +77,32 @@ $("#page-match-list").on('click', '.weui-btn_primary', function(event) {
         }, function() {
             //取消操作
         });
+}else{
+
+ $.confirm("您确定要取消参加 "+curr_title+" 这个赛事吗?", function() {
+            $._ajax({
+                url: domain + "/api/v1/competition/apply/cancel",
+                data: {
+                    id: curr_id
+                },
+                success: function(data) {
+                    if (data.error_code === 0) {
+                        $.toast("取消成功", function() {
+                             $btn.html("报名").removeClass("weui-btn_disabled");
+                            console.log('取消报名成功');
+                        });
+                    }
+                }
+            });
+        }, function() {
+            //取消操作
+        });
+
+}
+
+    
+
+
 });
 
        
