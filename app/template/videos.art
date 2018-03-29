@@ -1,5 +1,5 @@
 <video id="video" class="video-js vjs-default-skin  vjs-big-play-centered" controls poster="{{main_img_url}}" preload="auto" x5-playsinline="true" playsinline="true" webkit-playsinline="true">
-    <source src="{{file.name}}" type="video/mp4">
+    <source src="{{play_url}}" type="video/mp4">
 </video>
 <div class="content">
     <div class="weui-media-box weui-media-box_text">
