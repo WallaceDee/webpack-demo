@@ -1760,6 +1760,14 @@ i.icon-unknow {
 
 /* === #page-live-center === */
 
+#page-live-center .weui-badge{
+    vertical-align: top;
+    margin-left: 5px;
+    margin-top: 4px;
+}
+#page-live-center .weui-badge.over{
+background-color: #999;
+}
 #page-live-center .weui-search-bar {
     position: absolute;
     z-index: 500;

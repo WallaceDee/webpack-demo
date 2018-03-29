@@ -1,4 +1,4 @@
-<video id="video" class="video-js vjs-default-skin  vjs-big-play-centered" controls webkit-playsinline="true" playsinline="true" poster="{{main_img_url}}">
+<video id="video" class="video-js vjs-default-skin  vjs-big-play-centered" controls poster="{{main_img_url}}" preload="auto" x5-playsinline="true" playsinline="true" webkit-playsinline="true">
     <source src="{{file.name}}" type="video/mp4">
 </video>
 <div class="content">

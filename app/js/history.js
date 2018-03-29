@@ -9,6 +9,7 @@
 //5已取消！
 
 const template = require('../template/history.art')
+const no_data_tips_html = require('../template/no_data_tips.art')
 $(document).ready(function($) {
 
     var page = 1;
@@ -55,6 +56,10 @@ $(document).ready(function($) {
                 opt.page++;
                 opt.loading = false;
 
+                if (data.total === 0) {
+                    opt.ele.html(no_data_tips_html());
+                    return false;
+                }
             }
         });
     }
@@ -76,7 +81,7 @@ $(document).ready(function($) {
                     success: function(res) {
                         console.log(res);
                         $.toast("支付成功", function() {
-                                window.location.href = "user_center.html"
+                            window.location.href = "user_center.html"
                         });
                     }
                 });
@@ -94,8 +99,8 @@ $(document).ready(function($) {
             data: { id: curr_id },
             success: function(data) {
                 console.log(data);
-                $.toast("取消成功",function(){      window.location.reload();});
-          
+                $.toast("取消成功", function() { window.location.reload(); });
+
             }
         });
 
@@ -109,7 +114,7 @@ $(document).ready(function($) {
             data: { id: curr_id },
             success: function(data) {
                 console.log(data);
-                  $.toast("关闭成功",function(){      window.location.reload();});
+                $.toast("关闭成功", function() { window.location.reload(); });
             }
         });
 

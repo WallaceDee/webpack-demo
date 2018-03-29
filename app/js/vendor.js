@@ -296,11 +296,17 @@ if ($.getCache("token") !== null) {
 
     console.log("window.token=" + token);
 }
-window.is_member = $._ajax({
+
+var member=$._ajax({
     async: false,
     type: "get",
     url: domain + "/api/v1/user/info"
-}).responseJSON.member_status === 1;
+}).responseJSON;
+
+
+window.is_member =member.member_status === 1 ;
+window.hasMobile =member.mobile !== "" ;
+
 
 $("body").append('<div class="actGotop"><a href="javascript:;" title="返回顶部"><i class="icon-top"></i></a></div>');
 

@@ -1,32 +1,36 @@
  const template = require('../template/player_data.art')
 
  $(document).ready(function($) {
-     if (!is_member) {
-         $.modal({
-             text: "您目前还不是建东会员，暂无球员数据分析",
-             buttons: [{
-                     text: "去开通",
-                     onClick: function() {
-                         location.href = "vip.html";
-                     }
-                 },
-                 {
-                     text: "绑定手机",
-                     onClick: function() {
-                         location.href = "bind.html";
-                     }
-                 },
-                 {
-                     text: "返回",
-                     onClick: function() {
-                         history.back();
-                     }
-                 }
-             ]
-         });
-         return false;
-     }
+    var buttons = [{
+            text: "去开通",
+            onClick: function() {
+                location.href = "vip.html";
+            }
+        },
+        {
+            text: "返回",
+            onClick: function() {
+                history.back();
+            }
+        }
+    ];
+    if (!hasMobile) {
+        buttons.splice(1, 0, {
+            text: "绑定手机",
+            onClick: function() {
+                location.href = "bind.html";
+            }
+        });
 
+    }
+    
+    if (!is_member) {
+        $.modal({
+            text: "您目前还不是建东会员，暂无球员数据分析",
+            buttons: buttons
+        });
+        return false;
+    }
 
      var team = $._ajax({
          async: false,

@@ -6,7 +6,7 @@ $(document).ready(function($) {
         type: "get",
         url: domain + "/api/v1/business/joinus"
     }).responseJSON;
-     data.is_member=is_member;
+    data.is_member = is_member;
     $("#page-service-desc").html(template(data));
 
     $(document).on("click", "#page-service-desc .weui-btn_primary", function() {
@@ -23,26 +23,45 @@ $(document).ready(function($) {
                 name: data.title
             }
         }).responseJSON;
-        $._ajax({
-            url: "http://www.michellelee.top/api/v1/pay/pre_order",
-            data: { id: order.id },
-            success: function(data) {
-                wx.chooseWXPay({
-                    timestamp: data.timeStamp,
-                    nonceStr: data.nonceStr,
-                    package: data.package,
-                    signType: data.signType,
-                    paySign: data.paySign,
-                    success: function(res) {
-                        console.log(res);
-                        $.toast("支付成功", function() {
-                            window.location.href = "user_center.html"
-                        });
+        if (order.error_code === 10011) {
+            $.modal({
+                text: "您还没绑定手机号码！",
+                buttons: [{
+                        text: "去绑定",
+                        onClick: function() {
+                            location.href = "bind.html";
+                        }
+                    },
+                    {
+                        text: "返回",
+                        onClick: function() {
+                        }
                     }
-                });
-            }
-        });
-    }); 
+                ]
+            });
+        } else {
+            $._ajax({
+                url: domain + "/api/v1/pay/pre_order",
+                data: { id: order.id },
+                success: function(data) {
+                    wx.chooseWXPay({
+                        timestamp: data.timeStamp,
+                        nonceStr: data.nonceStr,
+                        package: data.package,
+                        signType: data.signType,
+                        paySign: data.paySign,
+                        success: function(res) {
+                            console.log(res);
+                            $.toast("支付成功", function() {
+                                window.location.href = "user_center.html"
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
+    });
 
 
 });

@@ -3,7 +3,7 @@
     <a data-href="{{if list.file===undefined}}live{{else}}videos{{/if}}.html?id={{list.id}}">
     <span class="surface" style="background-image: url({{list.main_img_url}})"></span>
     <div class="card-content">
-        <h4 class="weui-media-box__title">{{list.title}}</h4>
+        <h4 class="weui-media-box__title">{{list.title}}{{if list.live_status!==undefined}}{{if list.live_status===1}}<span class="weui-badge">进行中</span>{{else}}<span class="weui-badge over">已过期</span>{{/if}} {{/if}}</h4>
          <p class="weui-media-box__desc">{{if list.summary!=""}}{{list.summary}}{{else}}暂无简介{{/if}}</p>
 {{if list.file===undefined}}{{else}}
 	<ul class="weui-media-box__info">

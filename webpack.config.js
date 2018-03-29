@@ -80,26 +80,26 @@ var config = {
     plugins: [
         new vConsolePlugin({
             filter: [], // 需要过滤的入口文件
-            enable: true // 发布代码前记得改回 false
+            enable: false // 发布代码前记得改回 false
         }),
-        // new CopyWebpackPlugin([{
-        //     from: "./app/lib/jquery-2.1.4.js",
-        //     to: "./js/",
-        //     force: true
-        // }]),
-        // new CopyWebpackPlugin([{
-        //     from: "./app/images/emoji",
-        //     to: "./images/emoji",
-        //     force: true
-        // }]), new CopyWebpackPlugin([{
-        //     from: "./app/css/",
-        //     to: "./css/",
-        //     force: true
-        // }]),new CopyWebpackPlugin([{
-        //     from: "./app/fonts/",
-        //     to: "./fonts/",
-        //     force: true
-        // }]),
+        new CopyWebpackPlugin([{
+            from: "./app/lib/jquery-2.1.4.js",
+            to: "./js/",
+            force: true
+        }]),
+        new CopyWebpackPlugin([{
+            from: "./app/images/emoji",
+            to: "./images/emoji",
+            force: true
+        }]), new CopyWebpackPlugin([{
+            from: "./app/css/",
+            to: "./css/",
+            force: true
+        }]),new CopyWebpackPlugin([{
+            from: "./app/fonts/",
+            to: "./fonts/",
+            force: true
+        }]),
         new insertTag({
             paths: ["css/weui.min.css", "css/jquery-weui.min.css", "css/style.css?v=91", "js/jquery-2.1.4.js", "http://res.wx.qq.com/open/js/jweixin-1.2.0.js"]
         })

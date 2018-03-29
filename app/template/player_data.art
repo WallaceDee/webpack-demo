@@ -12,12 +12,12 @@
 {{/each}} {{else}} {{each data list i}}
 <li>
     <a href="player_data_detail.html?id={{list.id}}" class="item-link item-content">
-        <div class="item-media"><span style="background-image: url(http://www.michellelee.top/tmp/uploads/20180207/9472c2657230cdb637d817a1b837e039.jpg);"></span></div>
+        <div class="item-media"><span style="background-image: url({{list.main_img_url}});"></span></div>
         <div class="item-inner">
             <div class="item-title-row">
                 <div class="item-title">{{list.title}}</div>
             </div>
-            <div class="item-subtitle">{{list.play_time.split(" ")[0]}}</div>
+            <div class="item-subtitle">{{list.play_time}}</div>
         </div>
     </a>
 </li>

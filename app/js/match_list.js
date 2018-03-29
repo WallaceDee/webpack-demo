@@ -1,6 +1,37 @@
 const template = require('../template/match_list.art')
+const no_data_tips_html = require('../template/no_data_tips.art')
 //#page height=100%
 $(document).ready(function($) {
+    var buttons = [{
+            text: "去开通",
+            onClick: function() {
+                location.href = "vip.html";
+            }
+        },
+        {
+            text: "返回",
+            onClick: function() {
+                history.back();
+            }
+        }
+    ];
+    if (!hasMobile) {
+        buttons.splice(1, 0, {
+            text: "绑定手机",
+            onClick: function() {
+                location.href = "bind.html";
+            }
+        });
+
+    }
+    if (!is_member) {
+        $.modal({
+            text: "您目前还不是建东会员，暂无球员数据分析",
+            buttons: buttons
+        });
+        return false;
+    }
+
     var page = 1;
     var size = 10;
 
@@ -45,65 +76,68 @@ $(document).ready(function($) {
                 }
                 opt.page++;
                 opt.loading = false;
-
+                if (data.total === 0) {
+                    opt.ele.html(no_data_tips_html());
+                    return false;
+                }
             }
         });
     }
 
 
-$("#page-match-list").on('click', '.weui-btn_primary', function(event) {
-    event.preventDefault();
-    /* Act on the event */
-        var $curr=$(this).parents("a.item-content");
-    var curr_title=$curr.find('.item-title').text();
-    var curr_id=$curr.find('button').data("id");
-    var $btn=$(this);
-if(!$btn.hasClass("weui-btn_disabled")){
- $.confirm("您确定要报名参加 "+curr_title+" 这个赛事吗?", function() {
-            $._ajax({
-                url: domain + "/api/v1/competition/apply/commit",
-                data: {
-                    id: curr_id
-                },
-                success: function(data) {
-                    if (data.error_code === 0) {
-                        $.toast("报名成功", function() {
-                             $btn.html("已报名").addClass("weui-btn_disabled");
-                            console.log('报名成功');
-                        });
+    $("#page-match-list").on('click', '.weui-btn_primary', function(event) {
+        event.preventDefault();
+        /* Act on the event */
+        var $curr = $(this).parents("a.item-content");
+        var curr_title = $curr.find('.item-title').text();
+        var curr_id = $curr.find('button').data("id");
+        var $btn = $(this);
+        if (!$btn.hasClass("weui-btn_disabled")) {
+            $.confirm("您确定要报名参加 " + curr_title + " 这个赛事吗?", function() {
+                $._ajax({
+                    url: domain + "/api/v1/competition/apply/commit",
+                    data: {
+                        id: curr_id
+                    },
+                    success: function(data) {
+                        if (data.error_code === 0) {
+                            $.toast("报名成功", function() {
+                                $btn.html("取消").addClass("weui-btn_disabled");
+                                console.log('报名成功');
+                            });
+                        }
                     }
-                }
+                });
+            }, function() {
+                //取消操作
             });
-        }, function() {
-            //取消操作
-        });
-}else{
+        } else {
 
- $.confirm("您确定要取消参加 "+curr_title+" 这个赛事吗?", function() {
-            $._ajax({
-                url: domain + "/api/v1/competition/apply/cancel",
-                data: {
-                    id: curr_id
-                },
-                success: function(data) {
-                    if (data.error_code === 0) {
-                        $.toast("取消成功", function() {
-                             $btn.html("报名").removeClass("weui-btn_disabled");
-                            console.log('取消报名成功');
-                        });
+            $.confirm("您确定要取消参加 " + curr_title + " 这个赛事吗?", function() {
+                $._ajax({
+                    url: domain + "/api/v1/competition/apply/cancel",
+                    data: {
+                        id: curr_id
+                    },
+                    success: function(data) {
+                        if (data.error_code === 0) {
+                            $.toast("取消成功", function() {
+                                $btn.html("报名").removeClass("weui-btn_disabled");
+                                console.log('取消报名成功');
+                            });
+                        }
                     }
-                }
+                });
+            }, function() {
+                //取消操作
             });
-        }, function() {
-            //取消操作
-        });
 
-}
-
-    
+        }
 
 
-});
 
-       
+
+    });
+
+
 });

@@ -8,6 +8,7 @@
                 <div class="item-title">{{list.title}}</div>
             </div>
             <div class="item-subtitle">比赛时间：{{list.play_time}}</div>
+            {{if list.live_status!==undefined}}<div class="item-subtitle">{{if list.live_status===1}}进行中{{else}}已过期{{/if}}</div>{{/if}}
             <div class="item-text">{{list.summary}}</div>
         </div>
     </a>
