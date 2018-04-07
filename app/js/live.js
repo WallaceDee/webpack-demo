@@ -60,13 +60,20 @@ $(document).ready(function() {
                 if (received_data.room_id === curr_room) {
                     $("#page-live .messages-auto-layout").append(msg_template(received_data));
                     $("#page-live .messages-wrapper").finish().animate({ "scrollTop": $('#page-live .messages-wrapper')[0].scrollHeight }, 1000);
-                   var $temp= $("#page-live .messages-wrapper .message-appear-from-bottom");
-                    setTimeout(function(){
+                    var $temp = $("#page-live .messages-wrapper .message-appear-from-bottom");
+                    setTimeout(function() {
                         $temp.removeClass("message-appear-from-bottom");
-                    },1000);    
-                     if($("#page-live .messages-auto-layout").children().length>200){
+                    }, 1000);
+                    if ($("#page-live .messages-auto-layout").children().length > 200) {
                         $("#page-live .messages-auto-layout").children().eq(0).remove();
-                     }           
+                    }
+                    var temp = []; //
+                    if ($.getCache("message") !== null) {
+                        temp = JSON.parse($.getCache("message"));
+                    }
+                    temp.push(received_data);
+                    $.setCache("message", JSON.stringify(temp));
+
                 } else {
                     //不是当前房间号的对话
                 }
@@ -219,5 +226,30 @@ $(document).ready(function() {
         $("#page-live").removeClass('opened-emoji-wrapper');
     });;
     //endof表情插件
+
+    if ($.getCache("message") !== null) {
+        var message = JSON.parse($.getCache("message"));
+        for (var i = 0; i < message.length; i++) {
+            $("#page-live .messages-auto-layout").append(msg_template(message[i]));
+            $("#page-live .messages-wrapper").finish().animate({ "scrollTop": $('#page-live .messages-wrapper')[0].scrollHeight }, 1000);
+            var $temp = $("#page-live .messages-wrapper .message-appear-from-bottom");
+            setTimeout(function() {
+                $temp.removeClass("message-appear-from-bottom");
+            }, 1000);
+        }
+    }
+    checkOnline();
+    setInterval(checkOnline, 30000);
+    function checkOnline() {
+        $._ajax({
+            url: domain + "/api/v1/competition/online",
+            data: { id: curr_room },
+            success: function(data) {
+                console.log(data.TotalUserNumber);
+                $("#page-live .online-nums span").html();
+            }
+        });
+    }
+    //
 
 });

@@ -77,6 +77,9 @@ li {
 .icon-message:before {
   content: "\e0c9";
 }
+.icon-top:before {
+  content: "\e255";
+}
 .icon-keyboard:before {
   content: "\e312";
 }
@@ -125,8 +128,8 @@ li {
 .icon-male:before {
   content: "\f222";
 }
-.icon-top:before {
-  content: "\e255";
+.icon-people:before {
+  content: "\e7fb";
 }
 
 
@@ -1861,7 +1864,24 @@ position: relative;
 overflow: hidden;
 height: 100%;
 }*/
-
+#page-live .online-nums{
+        position: absolute;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.7);
+    height: 20px;
+    padding: 0 10px;
+    right: 10px;
+    top: 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    vertical-align: text-top;
+    color: #FFFFFF;
+}
+#page-live .online-nums i{
+        font-size: 16px;
+    vertical-align: -3px;
+    margin-right: 5px;
+}
 #page-live #video {
     position: relative;
     z-index: 2;
