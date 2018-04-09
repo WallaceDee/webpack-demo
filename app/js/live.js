@@ -242,8 +242,8 @@ $(document).ready(function() {
     setInterval(checkOnline, 30000);
     function checkOnline() {
         $._ajax({
-            url: domain + "/api/v1/competition/online",
-            data: { id: curr_room },
+            type:'get',
+            url: domain + "/api/v1/competition/online/"+curr_room,
             success: function(data) {
                 console.log(data.TotalUserNumber);
                 $("#page-live .online-nums span").html();
