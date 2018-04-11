@@ -22,6 +22,7 @@ $(document).ready(function() {
         type: "get",
         url: domain + "/api/v1/competitionlive/" + curr_room
     }).responseJSON;
+    data.isAndroid = $.device().android;
     console.log(data);
     $("#page-live").html(template(data));
 
@@ -46,6 +47,15 @@ $(document).ready(function() {
         onOpen: function(e) {
             console.log(e);
             console.log("链接成功");
+            var msg = {
+                type: "SEND_ALL",
+                room_id: "99999999",
+                // connect_id: userInfo.mobile,
+                content: "6",
+            };
+            console.log(msg);
+            ws.send(JSON.stringify(msg));
+
         },
         onMessage: function(MessageEvent) {
             var msg = MessageEvent.data;
@@ -57,7 +67,10 @@ $(document).ready(function() {
                 console.log(msg);
                 //todo 
                 var received_data = JSON.parse(msg);
-                if (received_data.room_id === curr_room) {
+                if (received_data.onlinenum!==undefined) {
+                    $("#page-live .online-nums span,#page-live .android-nums").html(received_data.onlinenum);
+                }
+                if (received_data.room_id === curr_room && received_data.type != "OnLine") {
                     $("#page-live .messages-auto-layout").append(msg_template(received_data));
                     $("#page-live .messages-wrapper").finish().animate({ "scrollTop": $('#page-live .messages-wrapper')[0].scrollHeight }, 1000);
                     var $temp = $("#page-live .messages-wrapper .message-appear-from-bottom");
@@ -238,18 +251,20 @@ $(document).ready(function() {
             }, 1000);
         }
     }
-    checkOnline();
-    setInterval(checkOnline, 30000);
-    function checkOnline() {
-        $._ajax({
-            type:'get',
-            url: domain + "/api/v1/competition/online/"+curr_room,
-            success: function(data) {
-                console.log(data.TotalUserNumber);
-                $("#page-live .online-nums span").html();
-            }
-        });
-    }
+    // checkOnline();
+    // setInterval(checkOnline, 30000);
+    // function checkOnline() {
+    //     $._ajax({
+    //         type:'get',
+    //         url: domain + "/api/v1/competition/online/"+curr_room,
+    //         success: function(data) {
+    //             console.log(data.TotalUserNumber);
+    //             if(Number(ata.TotalUserNumber)>0){
+    //             $("#page-live .online-nums span,#page-live.android-nums").html(data.TotalUserNumber);
+    //             }
+    //         }
+    //     });
+    // }
     //
 
 });

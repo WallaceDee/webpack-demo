@@ -6,7 +6,7 @@
 <div class="content">
     <div class="weui-tab">
         <div class="weui-navbar">
-            <a class="weui-navbar__item weui-bar__item--on" href="#tab1"><i class="icon-message"></i>互动</a>
+            <a class="weui-navbar__item weui-bar__item--on" href="#tab1"><i class="icon-message"></i>互动{{if isAndroid===true}}(<span class="android-nums">0</span>){{/if}}</a>
             <a class="weui-navbar__item" href="#tab2"><i class="icon-library-books"></i>简介</a>
         </div>
         <div class="weui-tab__bd">
