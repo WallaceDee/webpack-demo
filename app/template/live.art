@@ -2,11 +2,11 @@
     <source src="{{play_m3u8}}" type="application/x-mpegURL">
     <source src="{{play_flv}}" type="video/x-flv">
 </video>
-<span class="online-nums"><i class="icon-people"></i><span>0</span></span>
+{{if online_show==1&&live_status==1}}<span class="online-nums"><i class="icon-people"></i><span>0</span></span>{{/if}}
 <div class="content">
     <div class="weui-tab">
         <div class="weui-navbar">
-            <a class="weui-navbar__item weui-bar__item--on" href="#tab1"><i class="icon-message"></i>互动{{if isAndroid===true}}(<span class="android-nums">0</span>){{/if}}</a>
+            <a class="weui-navbar__item weui-bar__item--on" href="#tab1"><i class="icon-message"></i>互动{{if isAndroid===true&&online_show==1&&live_status==1}}(<span class="android-nums">0</span>){{/if}}</a>
             <a class="weui-navbar__item" href="#tab2"><i class="icon-library-books"></i>简介</a>
         </div>
         <div class="weui-tab__bd">

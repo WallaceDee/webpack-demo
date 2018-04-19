@@ -26,6 +26,21 @@ $(document).ready(function() {
     console.log(data);
     $("#page-live").html(template(data));
 
+     $._ajax({
+        type: "get",
+        url: domain + "/api/v1/guest/" + curr_room,
+        success:function(data){
+        for (var i = 0; i < data.length; i++) {
+            data[i].user=JSON.parse(data[i].user);
+            $("#page-live .messages-auto-layout").append(msg_template(data[i]));
+            $("#page-live .messages-wrapper").finish().animate({ "scrollTop": $('#page-live .messages-wrapper')[0].scrollHeight }, 1000);
+            var $temp = $("#page-live .messages-wrapper .message-appear-from-bottom");
+            setTimeout(function() {
+                $temp.removeClass("message-appear-from-bottom");
+            }, 1000);
+        }
+        }
+    })
 
     window.player = videojs("video", {
         language: "zh-CN",
@@ -67,8 +82,8 @@ $(document).ready(function() {
                 console.log(msg);
                 //todo 
                 var received_data = JSON.parse(msg);
-                if (received_data.onlinenum!==undefined) {
-                    $("#page-live .online-nums span,#page-live .android-nums").html(received_data.onlinenum);
+                if (received_data.ONLINE!==undefined) {
+                    $("#page-live .online-nums span,#page-live .android-nums").html(received_data.ONLINE);
                 }
                 if (received_data.room_id === curr_room && received_data.type != "OnLine") {
                     $("#page-live .messages-auto-layout").append(msg_template(received_data));
@@ -96,7 +111,7 @@ $(document).ready(function() {
     });
     // $("#page-live .message").on('click', '.selector', function(event) {
     //     event.preventDefault();
-    //     /* Act on the event */
+    //     /* Act on the event */ 
     // });
     var heartCheck = {
         timeout: 20000, //计时器设定为20s
@@ -133,7 +148,8 @@ $(document).ready(function() {
             user: {
                 username: userInfo.username,
                 head_img: userInfo.head_img
-            }
+            },
+            token:token
         };
         console.log(msg);
         ws.send(JSON.stringify(msg));
@@ -240,17 +256,18 @@ $(document).ready(function() {
     });;
     //endof表情插件
 
-    if ($.getCache("message") !== null) {
-        var message = JSON.parse($.getCache("message"));
-        for (var i = 0; i < message.length; i++) {
-            $("#page-live .messages-auto-layout").append(msg_template(message[i]));
-            $("#page-live .messages-wrapper").finish().animate({ "scrollTop": $('#page-live .messages-wrapper')[0].scrollHeight }, 1000);
-            var $temp = $("#page-live .messages-wrapper .message-appear-from-bottom");
-            setTimeout(function() {
-                $temp.removeClass("message-appear-from-bottom");
-            }, 1000);
-        }
-    }
+    // if ($.getCache("message") !== null) {
+    //     var message = JSON.parse($.getCache("message"));
+    //     for (var i = 0; i < message.length; i++) {
+    //         $("#page-live .messages-auto-layout").append(msg_template(message[i]));
+    //         $("#page-live .messages-wrapper").finish().animate({ "scrollTop": $('#page-live .messages-wrapper')[0].scrollHeight }, 1000);
+    //         var $temp = $("#page-live .messages-wrapper .message-appear-from-bottom");
+    //         setTimeout(function() {
+    //             $temp.removeClass("message-appear-from-bottom");
+    //         }, 1000);
+    //     }
+    // }
+
     // checkOnline();
     // setInterval(checkOnline, 30000);
     // function checkOnline() {
